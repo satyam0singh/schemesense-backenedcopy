@@ -3,46 +3,73 @@ from app.services.eligibility import eligibility_engine
 from app.services.recommendation import recommendation_engine
 from app.utils.loader import loader
 from app.models import SchemeResponse
+import traceback
 
 class ChatbotEngine:
     def chat_pipeline(self, user_query: str, scheme: dict = None, user_profile: dict = None):
         """
         Main entry point for the chatbot.
-        Logic: If a specific scheme context is provided, run scheme_chat_agent.
-        Otherwise, fallback to a general discovery assistant.
+        Added robust error handling to prevent 500 errors.
         """
-        if not user_query:
-            return {"response": "Hi! I'm your AI Scheme Assistant. How can I help you today?", "schemes": []}
+        try:
+            # 🪵 Backend Logging for Debugging
+            print(f"\n--- DEBUG CHAT PAYLOAD ---")
+            print(f"Query: {user_query}")
+            print(f"Scheme Context: {'Provided' if scheme else 'None'}")
+            print(f"User Profile: {'Provided' if user_profile else 'None'}")
+            print(f"---------------------------\n")
 
-        if scheme:
-            # 🎯 Context-Aware Mode (Priority)
-            return self.scheme_chat_agent(user_query, scheme, user_profile)
-        
-        # 🌐 General Discovery Mode
-        return self.general_chat_agent(user_query, user_profile)
+            if not user_query:
+                return {"response": "Hi! I'm your AI Scheme Assistant. How can I help you today?", "schemes": []}
+
+            if scheme and isinstance(scheme, dict):
+                # 🎯 Context-Aware Mode (Priority)
+                return self.scheme_chat_agent(user_query, scheme, user_profile)
+            
+            # 🌐 General Discovery Mode
+            return self.general_chat_agent(user_query, user_profile)
+
+        except Exception as e:
+            # 🛡️ Catch-all Error Guard to prevent 500
+            error_trace = traceback.format_exc()
+            print(f"CRITICAL CHATBOT ERROR: {str(e)}\n{error_trace}")
+            return {
+                "response": f"I encountered an internal error while processing your request: {str(e)}. Please try again or rephrase your question.",
+                "schemes": [],
+                "related_schemes": []
+            }
 
     def scheme_chat_agent(self, query: str, scheme: dict, user_profile: dict = None):
         """
-        Processes queries about a specific scheme currently being viewed by the user.
+        Processes queries about a specific scheme with full null-safety guards.
         """
         query_l = query.lower()
         name = scheme.get("scheme_name", "this scheme")
         
-        # A. Context Extraction
-        benefits_obj = scheme.get("benefits", {})
+        # A. Context Extraction with Null Safety
+        benefits_obj = scheme.get("benefits")
+        if not isinstance(benefits_obj, dict):
+            benefits_obj = {}
+        
         benefits_text = benefits_obj.get("description", "Not specified")
         if benefits_obj.get("amount"):
             benefits_text = f"{benefits_obj.get('amount')} - {benefits_text}"
             
         docs = scheme.get("documents_required", [])
+        if not isinstance(docs, list):
+            docs = []
         docs_text = ", ".join(docs) if docs else "standard identification documents"
         
-        target_group = scheme.get("target_beneficiary", ["citizens"])[0]
+        # Guard against empty target_beneficiary list
+        target_list = scheme.get("target_beneficiary", ["citizens"])
+        if not isinstance(target_list, list) or len(target_list) == 0:
+            target_list = ["citizens"]
+        target_group = target_list[0]
         
         # B. Intent Detection (Keyword-based)
         if any(w in query_l for w in ["eligib", "can i", "am i", "fit"]):
             # Eligibility Intent
-            if user_profile and any(user_profile.values()):
+            if user_profile and isinstance(user_profile, dict) and any(user_profile.values()):
                 is_el, conf, reason, match_type = eligibility_engine.evaluate(user_profile, scheme)
                 if is_el:
                     response = f"Based on your profile, you appear to be a **{match_type.lower()} match** for {name}. {reason.split('.')[0]}."
@@ -61,9 +88,13 @@ class ChatbotEngine:
             
         elif any(w in query_l for w in ["apply", "how to", "process", "register"]):
             # Application Intent
-            mode = ", ".join(scheme.get("application", {}).get("mode", ["online"]))
-            link = scheme.get("application", {}).get("link", "")
-            response = f"You can apply for {name} via {mode}. "
+            app_obj = scheme.get("application")
+            if not isinstance(app_obj, dict):
+                app_obj = {}
+            modes = app_obj.get("mode", ["online"])
+            mode_text = ", ".join(modes) if isinstance(modes, list) else "online"
+            link = app_obj.get("link", "")
+            response = f"You can apply for {name} via {mode_text}. "
             if link:
                 response += f"The official link is {link}. I recommend checking the portal for the latest steps."
             else:
@@ -90,7 +121,7 @@ class ChatbotEngine:
         
         # Basic intent for general mode
         if "suggest" in query_l or "recommend" in query_l or "find" in query_l:
-            if user_profile and any(user_profile.values()):
+            if user_profile and isinstance(user_profile, dict) and any(user_profile.values()):
                 results = recommendation_engine.get_recommendations(user_profile)
                 # Filter out fallback
                 valid = [r for r in results if r.scheme_name != "No Match Found"]
@@ -123,24 +154,34 @@ class ChatbotEngine:
 
     def suggest_related_schemes(self, current_scheme: dict, all_schemes: list):
         """
-        Finds schemes in the same category, excluding the current one.
+        Finds schemes in the same category, excluding the current one with full null-safety.
         """
+        if not isinstance(current_scheme, dict) or not isinstance(all_schemes, list):
+            return []
+
         current_id = current_scheme.get("scheme_id")
-        categories = set(current_scheme.get("scheme_category", []))
+        current_cats = current_scheme.get("scheme_category")
+        if not isinstance(current_cats, list):
+            current_cats = []
+        categories = set(current_cats)
         
         related = []
         for scheme in all_schemes:
-            if scheme.get("scheme_id") == current_id:
+            if not isinstance(scheme, dict) or scheme.get("scheme_id") == current_id:
                 continue
                 
-            scheme_cats = set(scheme.get("scheme_category", []))
+            scheme_cats_list = scheme.get("scheme_category")
+            if not isinstance(scheme_cats_list, list):
+                scheme_cats_list = []
+            scheme_cats_set = set(scheme_cats_list)
+            
             # Intersection of categories
-            if categories & scheme_cats:
+            if categories & scheme_cats_set:
                 # Store simplified version for UI
                 related.append({
                     "scheme_id": scheme.get("scheme_id"),
                     "scheme_name": scheme.get("scheme_name"),
-                    "category": list(scheme_cats)[0] if scheme_cats else "General"
+                    "category": list(scheme_cats_set)[0] if scheme_cats_set else "General"
                 })
                 
         # Return top 3 related
