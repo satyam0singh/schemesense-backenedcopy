@@ -1,0 +1,20 @@
+﻿
+--- TESTING EXPANDED JURY FAQ ---
+QUERY: How to apply?
+RESPONSE: To apply, simply find your desired scheme on our platform, verify your eligibility using the 'Check Eligibility' button, and follow the official application link provided in the scheme details.
+------------------------------
+QUERY: Are there any fees?
+RESPONSE: SchemeSense and most government applications are completely free. Be cautious of middlemen or third-party sites asking for money to process your application.
+------------------------------
+QUERY: Is Aadhaar mandatory?
+RESPONSE: Yes, Aadhaar is mandatory for almost all government schemes to ensure direct benefit transfer (DBT) and prevent duplicate claims.
+------------------------------
+QUERY: Are there schemes for women?
+RESPONSE: We support many schemes for women, including Sukanya Samriddhi Yojana, Stand-Up India, and specialized grants for women entrepreneurs under Startup India.
+------------------------------
+QUERY: Can I apply for multiple schemes?
+RESPONSE: Yes, you can apply for multiple schemes as long as you meet the specific eligibility for each. You must ensure there is no duplication of the same benefit (e.g., getting two house subsidies).
+------------------------------
+QUERY: Tell me about student scholarships
+RESPONSE: I found some verified information about **Free Laptop Scheme** that might be relevant to you. Would you like to check the full details or your eligibility?
+------------------------------

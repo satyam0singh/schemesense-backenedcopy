@@ -25,10 +25,18 @@ class ChatbotEngine:
             # 🛠️ JURY MODE: Platform FAQ Layer (Hardcoded Expert Answers)
             query_l = user_query.lower()
             PLATFORM_FAQ = {
-                "what is schemesense": "SchemeSense is an AI-powered platform designed to provide citizens and entrepreneurs with personalized, instant access to government schemes and startup grants. It uses fuzzy-eligibility matching and context-aware chat to bridge the knowledge gap between citizens and government resources.",
+                "what is schemesense": "SchemeSense is an AI-powered platform designed to provide citizens and entrepreneurs with personalized, instant access to government schemes and startup grants. It uses fuzzy-eligibility matching and context-aware chat to bridge the knowledge gap.",
                 "who built this": "SchemeSense was built by a dedicated team of engineers for the Hacknovate Hackathon. Our goal was to create a production-grade, winner-level solution for simplifying government scheme discovery.",
-                "how it works": "Our AI engine uses a three-tier pipeline: (1) Discovery: keyword-based retrieval of relevant schemes, (2) Eligibility: fuzzy evaluation of user profiles against scheme rules, and (3) Chat: a context-aware assistant that answers specific questions about benefits, documents, and application steps.",
-                "purpose of this": "The purpose is to simplify access to welfare and innovation programs, ensuring that no eligible citizen misses out on government support due to complex documentation or lack of awareness.",
+                "how it works": "Our AI engine uses a three-tier pipeline: (1) Discovery using keyword-based retrieval, (2) Eligibility using fuzzy logic, and (3) Chat for specific context-aware queries about benefits and doc requirements.",
+                "how to apply": "To apply, simply find your desired scheme on our platform, verify your eligibility using the 'Check Eligibility' button, and follow the official application link provided in the scheme details.",
+                "document": "Most Indian government schemes require at least an Aadhaar Card, Proof of Residence (Voter ID/Domicile), and Income Certificate. For startups, you typically need a pitch deck and registration documents.",
+                "aadhaar": "Yes, Aadhaar is mandatory for almost all government schemes to ensure direct benefit transfer (DBT) and prevent duplicate claims.",
+                "fees": "SchemeSense and most government applications are completely free. Be cautious of middlemen or third-party sites asking for money to process your application.",
+                "women": "We support many schemes for women, including Sukanya Samriddhi Yojana, Stand-Up India, and specialized grants for women entrepreneurs under Startup India.",
+                "farmers": "Farmers can find numerous programs like PM-KISAN, Fasal Bima Yojana, and KCC (Kisan Credit Card) by searching in the 'Agriculture' category.",
+                "students": "Students have access to thousands of scholarships like NSP (National Scholarship Portal) and PM-USP, as well as education loans and innovation grants like AIM.",
+                "multiple": "Yes, you can apply for multiple schemes as long as you meet the specific eligibility for each. You must ensure there is no duplication of the same benefit (e.g., getting two house subsidies).",
+                "purpose": "The purpose is to simplify access to welfare and innovation programs, ensuring that no eligible citizen misses out due to complex documentation.",
                 "contact": "You can reach the development team via our platform dashboard or GitHub repository for any technical queries.",
                 "future": "We plan to expand our dataset, integrate voice commands in vernacular languages, and add a direct portal for application tracking in future versions."
             }
