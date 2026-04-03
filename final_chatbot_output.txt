@@ -1,0 +1,16 @@
+﻿
+--- TESTING PLATFORM FAQ ---
+Query: What is SchemeSense?
+Response: SchemeSense is an AI-powered platform designed to provide citizens and entrepreneurs with personalized, instant access to government schemes and startup grants. It uses fuzzy-eligibility matching and context-aware chat to bridge the knowledge gap between citizens and government resources.
+
+Query: How it works?
+Response: Our AI engine uses a three-tier pipeline: (1) Discovery: keyword-based retrieval of relevant schemes, (2) Eligibility: fuzzy evaluation of user profiles against scheme rules, and (3) Chat: a context-aware assistant that answers specific questions about benefits, documents, and application steps.
+
+Query: Who built this?
+Response: SchemeSense was built by a dedicated team of engineers for the Hacknovate Hackathon. Our goal was to create a production-grade, winner-level solution for simplifying government scheme discovery.
+
+
+--- TESTING JURY MODE (LOW CONFIDENCE) ---
+Query: How to bake a cake?
+Response: I apologize, but I don't have verified data on that specific query yet. My current knowledge base is focused on Indian government welfare schemes and startup grants. Please try asking about things like 'business loans' or 'scholarships'!
+

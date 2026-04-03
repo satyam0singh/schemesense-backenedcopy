@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File, HTTPException
 from typing import List
 from app.models import SchemeRequest, SchemeResponse, ChatRequest, ChatResponse
 from app.services.recommendation import recommendation_engine
@@ -7,8 +7,29 @@ from app.services.recommendation import recommendation_engine
 from app.utils.loader import loader
 from app.services.rag import rag_engine
 from app.services.chatbot import chatbot_engine
+from app.services.pdf_parser import pdf_parser_agent
 
 router = APIRouter()
+
+@router.post("/upload-scheme-pdf")
+async def upload_scheme_pdf(file: UploadFile = File(...)):
+    """
+    Accepts a PDF file, extracts scheme information using Gemini LLM,
+    and returns a structured JSON response.
+    """
+    if file.content_type != "application/pdf":
+        raise HTTPException(status_code=400, detail="Invalid file type. Only PDF is allowed.")
+    
+    try:
+        # Read file as bytes
+        file_bytes = await file.read()
+        
+        # Use the PDF Parser Agent to extract structured data
+        extracted_data = pdf_parser_agent.pdf_parser_agent(file_bytes)
+        
+        return extracted_data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error during PDF processing: {str(e)}")
 
 initialized = False
 
