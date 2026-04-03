@@ -1,6 +1,7 @@
 import io
 import os
 import json
+import re
 from pypdf import PdfReader
 import google.generativeai as genai
 
@@ -19,7 +20,9 @@ class PDFParserAgent:
             reader = PdfReader(io.BytesIO(file_bytes))
             text = ""
             for page in reader.pages:
-                text += page.extract_text() + " "
+                page_text = page.extract_text()
+                if page_text:
+                    text += page_text + " "
                 if len(text) > 4000:
                     break
             
@@ -32,7 +35,8 @@ class PDFParserAgent:
 
     def parse_scheme_with_llm(self, text: str) -> dict:
         """
-        Uses Gemini 1.5 Flash to extract structured scheme data from raw text.
+        Uses Gemini to extract structured scheme data from raw text.
+        Includes model fallback for robustness (flash-latest -> pro).
         """
         if not GEMINI_API_KEY:
             return self._get_error_response("Gemini API Key missing in environment.")
@@ -40,52 +44,69 @@ class PDFParserAgent:
         if not text:
             return self._get_error_response("No text could be extracted from the PDF.")
 
-        try:
-            model = genai.GenerativeModel('gemini-1.5-flash')
-            
-            prompt = f"""
-            Extract the following fields from this government scheme document:
-            
-            - Scheme Name
-            - Eligibility Criteria
-            - Benefits
-            - Required Documents (as list)
-            - Target State
-            - Official Website (if present)
-            
-            Scheme text:
-            {text}
-            
-            Return STRICT JSON only in this exact format:
-            {{
-              "name": "Scheme name",
-              "eligibility": "Fuzzy criteria...",
-              "benefits": "List of benefits...",
-              "documents": ["doc1", "doc2"],
-              "state": "Name of state or All India",
-              "official_link": "URL",
-              "confidence": "high/medium/low"
-            }}
-            
-            Ensure no extra text, markdown formatting blocks, or dialogue. Return raw JSON string.
-            """
-            
-            response = model.generate_content(prompt)
-            
-            # Clean response text in case Gemini wraps it in ```json ... ```
-            content = response.text.replace("```json", "").replace("```", "").strip()
-            
-            # Parse and validate
-            structured_data = json.loads(content)
-            return structured_data
-            
-        except Exception as e:
-            print(f"LLM Extraction Error: {str(e)}")
-            return self._get_error_response(f"Failed to extract structured data: {str(e)}")
+        # Try multiple model names in order of preference
+        models_to_try = ["gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-pro"]
+        
+        last_error = ""
+        for model_name in models_to_try:
+            try:
+                print(f"DEBUG: Attempting extraction with model: {model_name}")
+                model = genai.GenerativeModel(model_name)
+                
+                prompt = f"""
+                Extract the following fields from this government scheme document:
+                
+                - Scheme Name
+                - Eligibility Criteria
+                - Benefits
+                - Required Documents (as list)
+                - Target State
+                - Official Website (if present)
+                
+                Scheme text:
+                {text}
+                
+                Return STRICT JSON only in this exact format:
+                {{
+                  "name": "Scheme name",
+                  "eligibility": "Fuzzy criteria...",
+                  "benefits": "List of benefits...",
+                  "documents": ["doc1", "doc2"],
+                  "state": "Name of state or All India",
+                  "official_link": "URL",
+                  "confidence": "high/medium/low"
+                }}
+                
+                Ensure no extra text, markdown formatting blocks, or dialogue. Return raw JSON string.
+                """
+                
+                response = model.generate_content(prompt)
+                
+                # Robust cleaning of JSON response (strips markdown backticks)
+                content = response.text.strip()
+                # Remove Markdown code blocks if present
+                content = re.sub(r'^```json\s*', '', content)
+                content = re.sub(r'^```\s*', '', content)
+                content = re.sub(r'\s*```$', '', content)
+                content = content.strip()
+                
+                # Parse and validate
+                structured_data = json.loads(content)
+                print(f"SUCCESS: Extracted data using {model_name}")
+                return structured_data
+                
+            except Exception as e:
+                last_error = str(e)
+                print(f"DEBUG: Model {model_name} failed: {last_error}")
+                # Continue loop to next model in case of 404/403/etc
+                continue
+
+        # If all models fail
+        return self._get_error_response(f"All extraction models failed. Last error: {last_error}")
 
     def _get_error_response(self, message: str) -> dict:
         return {
-            "name": "Error",
+            "name": "Extraction Error",
             "eligibility": "N/A",
             "benefits": "N/A",
             "documents": [],
