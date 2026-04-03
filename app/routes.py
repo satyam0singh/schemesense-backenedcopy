@@ -94,3 +94,22 @@ def get_all_startups():
     ]
     
     return startup_schemes
+
+@router.get("/nearest-offices", response_model=List[OfficeResponse])
+def get_nearest_offices(lat: float, lng: float):
+    """
+    Finds and returns the nearest government offices (BDO, CSC)
+    based on user latitude and longitude.
+    """
+    # Simple validation for coordinates
+    if not (-90 <= lat <= 90) or not (-180 <= lng <= 180):
+        from fastapi import HTTPException
+        raise HTTPException(status_code=400, detail="Invalid coordinates. Lat must be -90 to 90, Lng -180 to 180.")
+
+    # Import the service
+    from app.services.office_service import office_service
+    
+    # Get top 5 nearest offices
+    results = office_service.get_nearest_offices(lat, lng, limit=5)
+    
+    return results

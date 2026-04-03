@@ -31,3 +31,11 @@ class ChatResponse(BaseModel):
     response: str
     schemes: Optional[List[Dict[str, Any]]] = None
     related_schemes: Optional[List[Dict[str, Any]]] = None
+
+class OfficeResponse(BaseModel):
+    name: str
+    type: str
+    lat: float
+    lng: float
+    address: str
+    distance: float

@@ -1,0 +1,24 @@
+﻿
+--- TESTING SERVICE LOGIC AT (28.6692, 77.4538) ---
+Nearest 5 offices found:
+- CSC Center Ghaziabad (CSC) | Distance: 0.0km
+- UP IT Solutions Hub (CSC) | Distance: 16.4km
+- BDO Office Loni (BDO) | Distance: 20.33km
+- Aadhar Seva Kendra Delhi (CSC) | Distance: 26.88km
+- BDO Office Mehrauli (BDO) | Distance: 34.37km
+
+--- TESTING SERVICE LOGIC AT (26.8467, 80.9462) ---
+Nearest 5 offices found:
+- CSC Center Lucknow (CSC) | Distance: 0.0km
+- BDO Office Mohanlalganj (BDO) | Distance: 18.86km
+- UP IT Solutions Hub (CSC) | Distance: 436.89km
+- CSC Center Ghaziabad (CSC) | Distance: 437.27km
+- BDO Office Mehrauli (BDO) | Distance: 457.1km
+
+--- TESTING SERVICE LOGIC AT (19.076, 72.8777) ---
+Nearest 5 offices found:
+- CSC Center Mumbai West (CSC) | Distance: 0.0km
+- BDO Office Pune City (BDO) | Distance: 124.95km
+- BDO Office North Bangalore (BDO) | Distance: 850.84km
+- Bangalore One Center (CSC) | Distance: 856.3km
+- BDO Office Mehrauli (BDO) | Distance: 1151.97km
