@@ -1,69 +1,44 @@
-import faiss
-import numpy as np
-from app.utils.embeddings import embedding_model
-
 class RAGService:
     def __init__(self):
-        self.index = None
-        self.scheme_ids = []
+        self.schemes = []
 
     def build_index(self, schemes):
         """
-        Build a FAISS vector index of the schemes based on ai_fields.search_text 
+        Store schemes in memory for keyword search.
+        No FAISS index needed anymore to save RAM on Render Free Tier.
         """
-        self.scheme_ids = []
-        texts = []
+        self.schemes = schemes
+        print("Loaded schemes for keyword search (FAISS removed).")
 
-        for scheme in schemes:
-            self.scheme_ids.append(scheme.get("scheme_id"))
-            ai_fields = scheme.get("ai_fields", {})
-            search_text = ai_fields.get("search_text", "")
-            summary = ai_fields.get("summary", "")
-            keywords = " ".join(ai_fields.get("keywords", []))
-            
-            # Combine to create a rich semantic block
-            text = f"{search_text} {summary} {keywords}".strip()
-            if not text:
-                text = scheme.get("scheme_name", "")
-            texts.append(text)
-
-        if not texts:
-            return
-
-        # Encode all search texts
-        embeddings = embedding_model.encode(texts)
-        
-        # Dimensions is the size of each vector
-        dimension = embeddings.shape[1]
-        
-        # We use an L2 distance (Euclidean distance) index for FAISS
-        self.index = faiss.IndexFlatL2(dimension)
-        
-        # FAISS expects numpy arrays as float32
-        self.index.add(np.array(embeddings).astype("float32"))
-        print(f"Added {len(texts)} scheme embeddings to FAISS index.")
-
-    def search(self, query_text, top_k=5):
+    def search(self, query_text, top_k=20):
         """
-        Search the scheme FAISS index for relevant documents
+        Keyword based search to replace semantic/FAISS search and fit free tier.
+        Returns: [{"id": scheme_id, "distance": simulated_distance}, ...]
         """
-        if self.index is None or not self.scheme_ids:
+        if not self.schemes:
             return []
 
-        # Convert query to vector
-        query_vector = embedding_model.encode([query_text]).astype("float32")
-        
-        # Conduct similarity search
-        distances, indices = self.index.search(query_vector, top_k)
-        
         results = []
-        for i, idx in enumerate(indices[0]):
-            if idx != -1: # -1 implies empty index or no match
-                results.append({
-                    "id": self.scheme_ids[idx],
-                    "distance": distances[0][i]
-                })
-
-        return results
+        for scheme in self.schemes:
+            # Safely grab search text
+            ai_fields = scheme.get("ai_fields", {})
+            search_text = ai_fields.get("search_text", "").lower()
+            
+            # Simple keyword matching as requested
+            score = sum(word in search_text for word in query_text.lower().split())
+            if score > 0:
+                results.append((score, scheme.get("scheme_id")))
+        
+        # Sort by best match (highest score first)
+        sorted_results = sorted(results, reverse=True)
+        
+        # Format explicitly to maintain compatibility with recommendation.py equations
+        final_results = []
+        for rank, (score, scheme_id) in enumerate(sorted_results[:top_k]):
+            # distance: 0 is best match, higher is worse. 1/(score+1) gives exactly this.
+            distance = 1.0 / (score + 1.0) 
+            final_results.append({"id": scheme_id, "distance": distance})
+            
+        return final_results
 
 rag_engine = RAGService()
