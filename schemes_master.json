@@ -1468,4 +1468,1800 @@
       "last_verified": "2026-03-31"
     }
   }
+,
+
+  {
+    "scheme_id": "SCH025",
+    "scheme_name": "PM Vishwakarma Yojana",
+    "source": "https://pmvishwakarma.gov.in",
+    "ministry": "Ministry of Micro, Small and Medium Enterprises",
+    "government_level": "Central",
+    "scheme_category": [
+      "Skill Development",
+      "Business",
+      "Artisans"
+    ],
+    "target_beneficiary": [
+      "Artisans",
+      "Craftspeople"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 100,
+        "occupation": [
+          "artisan",
+          "craftsman",
+          "self-employed"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        },
+        {
+          "field": "occupation",
+          "operator": "in",
+          "value": [
+            "artisan",
+            "craftsman"
+          ]
+        }
+      ],
+      "exceptions": [
+        "Must be engaged in one of the 18 specified traditional trades",
+        "Should not have availed loans under similar central/state schemes in the past 5 years"
+      ]
+    },
+    "benefits": {
+      "type": "Skill & Credit Support",
+      "amount": "Up to ₹3 lakh loan + ₹15,000 toolkit",
+      "disbursement": "Milestone based",
+      "description": "Collateral-free credit, skill training, and toolkit incentive for traditional artisans."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Ration Card",
+      "Trade Proof"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "CSC Center"
+      ],
+      "link": "https://pmvishwakarma.gov.in",
+      "steps": [
+        "Mobile & Aadhaar Verification",
+        "Artisan Registration Form",
+        "PM Vishwakarma Certificate generation"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "artisan craftsman tools loan business vishwakarma scheme",
+      "summary": "Financial and skill support for traditional artisans and craftspeople",
+      "keywords": [
+        "artisan",
+        "toolkit",
+        "business loan"
+      ]
+    },
+    "scoring": {
+      "priority_score": 92,
+      "popularity_score": 88,
+      "relevance_weight": 0.85
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH026",
+    "scheme_name": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "source": "https://pmmvy.wcd.gov.in",
+    "ministry": "Ministry of Women and Child Development",
+    "government_level": "Central",
+    "scheme_category": [
+      "Women",
+      "Health",
+      "Maternity"
+    ],
+    "target_beneficiary": [
+      "Pregnant Women",
+      "Lactating Mothers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 19,
+        "age_max": 50,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "female"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 19
+        }
+      ],
+      "exceptions": [
+        "Employees of Central/State Government or PSUs are not eligible"
+      ]
+    },
+    "benefits": {
+      "type": "Direct Benefit Transfer",
+      "amount": "₹5,000",
+      "disbursement": "Three installments",
+      "description": "Cash incentive for pregnant women and lactating mothers for first live birth."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "MCP (Mother and Child Protection) Card",
+      "Bank Account Details"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Anganwadi Centre"
+      ],
+      "link": "https://pmmvy.wcd.gov.in",
+      "steps": [
+        "Register at local Anganwadi/ASHA worker",
+        "Submit filled Form 1-A",
+        "Verify Aadhaar and Bank Details"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "maternity pregnancy women child health benefit pmmvy",
+      "summary": "₹5,000 cash incentive for pregnant women and lactating mothers",
+      "keywords": [
+        "maternity",
+        "pregnant",
+        "health"
+      ]
+    },
+    "scoring": {
+      "priority_score": 88,
+      "popularity_score": 93,
+      "relevance_weight": 0.86
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH027",
+    "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY)",
+    "source": "https://www.pmkvyofficial.org",
+    "ministry": "Ministry of Skill Development and Entrepreneurship",
+    "government_level": "Central",
+    "scheme_category": [
+      "Education",
+      "Skill Development",
+      "Youth"
+    ],
+    "target_beneficiary": [
+      "Unemployed Youth",
+      "School Dropouts"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 15,
+        "age_max": 45,
+        "occupation": [
+          "unemployed",
+          "student"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 15
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 45
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Skill Certification",
+      "amount": "Free Training",
+      "disbursement": "Service based",
+      "description": "Free short-term skill training, certification, and placement assistance."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Education Certificate"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Training Centre"
+      ],
+      "link": "https://www.pmkvyofficial.org",
+      "steps": [
+        "Find a training center",
+        "Enroll in a preferred course",
+        "Complete training and assessment"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "skill training jobs youth placement education pmkvy",
+      "summary": "Free skill training and certification for youth",
+      "keywords": [
+        "skill",
+        "training",
+        "jobs"
+      ]
+    },
+    "scoring": {
+      "priority_score": 85,
+      "popularity_score": 90,
+      "relevance_weight": 0.82
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH028",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maandhan (PM-SYM)",
+    "source": "https://maandhan.in",
+    "ministry": "Ministry of Labour and Employment",
+    "government_level": "Central",
+    "scheme_category": [
+      "Pension",
+      "Unorganized Sector",
+      "Workers"
+    ],
+    "target_beneficiary": [
+      "Unorganized Workers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 40,
+        "income_max": 180000,
+        "occupation": [
+          "unorganized_worker",
+          "laborer",
+          "domestic_worker"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "income",
+          "operator": "<=",
+          "value": 180000
+        },
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 40
+        }
+      ],
+      "exceptions": [
+        "Should not be engaged in Organized Sector (EPFO/NPS/ESIC)",
+        "Should not be an income tax payer"
+      ]
+    },
+    "benefits": {
+      "type": "Pension",
+      "amount": "₹3,000/month",
+      "disbursement": "Monthly after 60",
+      "description": "Assured monthly pension for unorganized sector workers post-retirement."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Savings Bank Account / Jan Dhan Account"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "CSC Center"
+      ],
+      "link": "https://maandhan.in",
+      "steps": [
+        "Visit nearest CSC or apply online",
+        "Provide Aadhaar and Bank details",
+        "Set up auto-debit for initial contribution"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "labor pension unorganized worker monthly income maandhan",
+      "summary": "₹3,000 monthly pension for unorganized workers after age 60",
+      "keywords": [
+        "pension",
+        "labor",
+        "unorganized"
+      ]
+    },
+    "scoring": {
+      "priority_score": 87,
+      "popularity_score": 85,
+      "relevance_weight": 0.84
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH029",
+    "scheme_name": "Prime Minister's Employment Generation Programme (PMEGP)",
+    "source": "https://kviconline.gov.in/pmegpeportal",
+    "ministry": "Ministry of Micro, Small and Medium Enterprises",
+    "government_level": "Central",
+    "scheme_category": [
+      "Business",
+      "Loan",
+      "Employment"
+    ],
+    "target_beneficiary": [
+      "Entrepreneurs",
+      "Unemployed Youth",
+      "Self Help Groups"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 100,
+        "occupation": [
+          "entrepreneur",
+          "unemployed"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": [
+        "For manufacturing projects above ₹10 lakh and service projects above ₹5 lakh, passing VIII standard is mandatory.",
+        "Existing units or units already availing other govt subsidies are ineligible."
+      ]
+    },
+    "benefits": {
+      "type": "Margin Money Subsidy",
+      "amount": "15% to 35% of project cost",
+      "disbursement": "Subsidized Loan",
+      "description": "Credit-linked subsidy to set up new micro-enterprises and generate employment."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Project Report",
+      "Education Certificate",
+      "Special Category Certificate (if applicable)"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://kviconline.gov.in/pmegpeportal",
+      "steps": [
+        "Submit application on PMEGP e-portal",
+        "Bank appraisal and sanction",
+        "EDP training and margin money release"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "business loan employment startup subsidy msme pmegp",
+      "summary": "Credit-linked subsidy up to 35% for setting up new businesses",
+      "keywords": [
+        "business",
+        "subsidy",
+        "employment"
+      ]
+    },
+    "scoring": {
+      "priority_score": 89,
+      "popularity_score": 86,
+      "relevance_weight": 0.88
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  }
+  ,
+  {
+    "scheme_id": "SCH030",
+    "scheme_name": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana (DDU-GKY)",
+    "source": "http://ddugky.gov.in",
+    "ministry": "Ministry of Rural Development",
+    "government_level": "Central",
+    "scheme_category": [
+      "Skill Development",
+      "Youth",
+      "Employment"
+    ],
+    "target_beneficiary": [
+      "Rural Youth"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 15,
+        "age_max": 35,
+        "occupation": [
+          "unemployed",
+          "student"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 15
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 35
+        }
+      ],
+      "exceptions": [
+        "Upper age limit relaxed up to 45 years for women, SC, ST, and PwD candidates"
+      ]
+    },
+    "benefits": {
+      "type": "Skill Training & Placement",
+      "amount": "Free Training + Placement",
+      "disbursement": "Service based",
+      "description": "Transforms rural poor youth into an economically independent and globally relevant workforce."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "BPL Card / Ration Card",
+      "Education Certificate",
+      "Caste Certificate (if applicable)"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Gram Panchayat"
+      ],
+      "link": "http://ddugky.gov.in",
+      "steps": [
+        "Register at Gram Rozgar Sewak or online",
+        "Attend counseling session",
+        "Enroll in a training trade"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "rural youth skill training jobs employment ddu gky",
+      "summary": "Free skill training and placement for rural youth",
+      "keywords": [
+        "rural",
+        "skill",
+        "placement"
+      ]
+    },
+    "scoring": {
+      "priority_score": 86,
+      "popularity_score": 84,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH031",
+    "scheme_name": "Kisan Credit Card (KCC)",
+    "source": "https://agricoop.nic.in",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "government_level": "Central",
+    "scheme_category": [
+      "Agriculture",
+      "Loan",
+      "Credit"
+    ],
+    "target_beneficiary": [
+      "Farmers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 75,
+        "occupation": [
+          "farmer",
+          "tenant_farmer",
+          "sharecropper"
+        ],
+        "land_holding_required": true,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "in",
+          "value": [
+            "farmer",
+            "tenant_farmer",
+            "sharecropper"
+          ]
+        },
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": [
+        "Co-borrower is mandatory for applicants above 60 years of age"
+      ]
+    },
+    "benefits": {
+      "type": "Short-Term Credit",
+      "amount": "Up to ₹3 Lakh",
+      "disbursement": "Credit Limit",
+      "description": "Adequate and timely credit support from the banking system under a single window for agricultural needs."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Land Ownership Records",
+      "PAN Card",
+      "Passport Size Photographs"
+    ],
+    "application": {
+      "mode": [
+        "Bank",
+        "Online"
+      ],
+      "link": "https://pmkisan.gov.in",
+      "steps": [
+        "Download KCC form from PM Kisan portal or Bank",
+        "Fill and submit at the respective bank branch",
+        "Limit sanctioned based on land holding and crops"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "farmer loan credit agriculture seeds kcc kisan",
+      "summary": "Short-term agricultural credit limit up to ₹3 Lakh for farmers",
+      "keywords": [
+        "farmer",
+        "credit",
+        "agriculture"
+      ]
+    },
+    "scoring": {
+      "priority_score": 95,
+      "popularity_score": 97,
+      "relevance_weight": 0.93
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH032",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+    "source": "https://pmjdy.gov.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Banking",
+      "Financial Inclusion",
+      "Insurance"
+    ],
+    "target_beneficiary": [
+      "Unbanked Citizens"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 10,
+        "age_max": 100,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 10
+        }
+      ],
+      "exceptions": [
+        "Overdraft facility up to ₹10,000 available only to one account per household, preferably lady of the house"
+      ]
+    },
+    "benefits": {
+      "type": "Banking Services",
+      "amount": "Zero Balance Account",
+      "disbursement": "Service based",
+      "description": "Universal access to banking facilities with RuPay Debit card, inbuilt accident insurance, and overdraft facility."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Any valid KYC document (Voter ID, Driving License, NREGA Card)"
+    ],
+    "application": {
+      "mode": [
+        "Bank",
+        "Bank Mitra"
+      ],
+      "link": "https://pmjdy.gov.in",
+      "steps": [
+        "Visit nearest bank branch or Bank Mitra",
+        "Submit account opening form with KYC",
+        "Receive Passbook and RuPay card"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "bank account zero balance financial inclusion rupay pmjdy",
+      "summary": "Zero balance savings account with accident insurance",
+      "keywords": [
+        "banking",
+        "account",
+        "zero balance"
+      ]
+    },
+    "scoring": {
+      "priority_score": 93,
+      "popularity_score": 96,
+      "relevance_weight": 0.90
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH033",
+    "scheme_name": "Indira Gandhi National Disability Pension Scheme (IGNDPS)",
+    "source": "https://nsap.nic.in",
+    "ministry": "Ministry of Rural Development",
+    "government_level": "Central",
+    "scheme_category": [
+      "Pension",
+      "Disability",
+      "Social Welfare"
+    ],
+    "target_beneficiary": [
+      "Persons with Disabilities"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 79,
+        "income_max": 200000,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 79
+        }
+      ],
+      "exceptions": [
+        "Applicant must belong to a Below Poverty Line (BPL) household",
+        "Must have severe (80%) or multiple disabilities"
+      ]
+    },
+    "benefits": {
+      "type": "Monthly Pension",
+      "amount": "₹300/month (Central share)",
+      "disbursement": "Monthly",
+      "description": "Financial assistance to individuals with severe or multiple disabilities from BPL families."
+    },
+    "documents_required": [
+      "Disability Certificate (minimum 80%)",
+      "BPL Ration Card",
+      "Aadhaar Card",
+      "Bank/Post Office Account Details"
+    ],
+    "application": {
+      "mode": [
+        "Offline",
+        "Online"
+      ],
+      "link": "https://nsap.nic.in",
+      "steps": [
+        "Apply at local Gram Panchayat or Municipal Corporation",
+        "Submit Medical Certificate and BPL proof",
+        "Verification by district welfare officer"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "disability pension handicap financial support bpl igndps",
+      "summary": "Monthly pension for severely disabled individuals from BPL families",
+      "keywords": [
+        "disability",
+        "pension",
+        "handicap"
+      ]
+    },
+    "scoring": {
+      "priority_score": 87,
+      "popularity_score": 83,
+      "relevance_weight": 0.85
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH034",
+    "scheme_name": "Mukhyamantri Kanya Sumangala Yojana",
+    "source": "https://mksy.up.gov.in",
+    "ministry": "Department of Women and Child Development",
+    "government_level": "State",
+    "scheme_category": [
+      "Girl Child",
+      "Education",
+      "Health"
+    ],
+    "target_beneficiary": [
+      "Girl Child"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 0,
+        "age_max": 25,
+        "income_max": 300000,
+        "occupation": [
+          "student",
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "Uttar Pradesh"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "female"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        },
+        {
+          "field": "state",
+          "operator": "==",
+          "value": "Uttar Pradesh"
+        },
+        {
+          "field": "income",
+          "operator": "<=",
+          "value": 300000
+        }
+      ],
+      "exceptions": [
+        "Maximum of two girls per family can benefit",
+        "Family must be a resident of Uttar Pradesh"
+      ]
+    },
+    "benefits": {
+      "type": "Financial Assistance",
+      "amount": "Up to ₹15,000",
+      "disbursement": "Six phases/installments",
+      "description": "Conditional cash transfer across 6 stages: from birth, vaccination, school admission, up to degree/diploma."
+    },
+    "documents_required": [
+      "Aadhaar Card of Parents/Guardian",
+      "Birth Certificate of Girl Child",
+      "Income Certificate",
+      "UP Domicile Certificate"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://mksy.up.gov.in",
+      "steps": [
+        "Register on MKSY portal",
+        "Create Login ID",
+        "Fill application and upload required documents per phase"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "girl child up state scheme kanya sumangala education birth",
+      "summary": "Financial support up to ₹15,000 for girl child across six milestones in UP",
+      "keywords": [
+        "girl child",
+        "education",
+        "uttar pradesh"
+      ]
+    },
+    "scoring": {
+      "priority_score": 89,
+      "popularity_score": 92,
+      "relevance_weight": 0.88
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  }
+,
+  {
+    "scheme_id": "SCH035",
+    "scheme_name": "e-Shram Portal Registration",
+    "source": "https://eshram.gov.in",
+    "ministry": "Ministry of Labour and Employment",
+    "government_level": "Central",
+    "scheme_category": [
+      "Workers",
+      "Unorganized Sector",
+      "Insurance"
+    ],
+    "target_beneficiary": [
+      "Unorganized Workers",
+      "Migrant Workers",
+      "Gig Workers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 16,
+        "age_max": 59,
+        "occupation": [
+          "unorganized_worker",
+          "laborer",
+          "gig_worker",
+          "street_vendor"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 16
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 59
+        }
+      ],
+      "exceptions": [
+        "Should not be a member of EPFO, ESIC, or NPS",
+        "Should not be an income tax payer"
+      ]
+    },
+    "benefits": {
+      "type": "Accident Insurance & ID",
+      "amount": "₹2 Lakh",
+      "disbursement": "Claim based",
+      "description": "Provides Universal Account Number (UAN) card and ₹2 lakh accidental insurance cover under PMSBY."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Mobile Number (Aadhaar linked)"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "CSC Center"
+      ],
+      "link": "https://eshram.gov.in",
+      "steps": [
+        "Self-registration via Aadhaar linked mobile",
+        "Fill demographic and occupational details",
+        "Download UAN card"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "labor card uan unorganized worker insurance eshram shramik",
+      "summary": "National database registration and accidental insurance for unorganized workers",
+      "keywords": [
+        "labor",
+        "unorganized",
+        "card"
+      ]
+    },
+    "scoring": {
+      "priority_score": 94,
+      "popularity_score": 96,
+      "relevance_weight": 0.91
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH036",
+    "scheme_name": "Pradhan Mantri Kisan Maandhan Yojana (PM-KMY)",
+    "source": "https://maandhan.in",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "government_level": "Central",
+    "scheme_category": [
+      "Pension",
+      "Agriculture"
+    ],
+    "target_beneficiary": [
+      "Small and Marginal Farmers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 40,
+        "occupation": [
+          "farmer"
+        ],
+        "land_holding_required": true,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 40
+        },
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "farmer"
+        }
+      ],
+      "exceptions": [
+        "Must hold cultivable land up to 2 hectares",
+        "Farmers registered under other statutory social security schemes (NPS, ESIC, EPFO) are ineligible"
+      ]
+    },
+    "benefits": {
+      "type": "Pension",
+      "amount": "₹3,000/month",
+      "disbursement": "Monthly after 60",
+      "description": "Assured monthly pension for small and marginal farmers post 60 years of age."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account",
+      "Land Record (Khasra/Khatauni)"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "CSC Center"
+      ],
+      "link": "https://maandhan.in",
+      "steps": [
+        "Visit nearest CSC",
+        "Provide Aadhaar, Bank, and Land details",
+        "Set up auto-debit for contribution"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "farmer pension retirement agriculture monthly income pm kmy",
+      "summary": "₹3,000 monthly pension for small and marginal farmers after age 60",
+      "keywords": [
+        "farmer",
+        "pension",
+        "retirement"
+      ]
+    },
+    "scoring": {
+      "priority_score": 88,
+      "popularity_score": 87,
+      "relevance_weight": 0.85
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH037",
+    "scheme_name": "Swachh Bharat Mission Gramin - Individual Household Latrine (IHHL)",
+    "source": "https://swachhbharatmission.gov.in",
+    "ministry": "Ministry of Jal Shakti",
+    "government_level": "Central",
+    "scheme_category": [
+      "Sanitation",
+      "Health",
+      "Subsidy"
+    ],
+    "target_beneficiary": [
+      "Rural Households"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": [
+        "Household must not already have a functional toilet",
+        "Targeted primarily at BPL households and identified APL households (SC/ST, physically handicapped, women-headed)"
+      ]
+    },
+    "benefits": {
+      "type": "Construction Subsidy",
+      "amount": "₹12,000",
+      "disbursement": "Installments",
+      "description": "Financial incentive for the construction of individual household latrines in rural areas."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Ration Card / BPL Proof",
+      "Photograph of site"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Gram Panchayat"
+      ],
+      "link": "https://swachhbharatmission.gov.in",
+      "steps": [
+        "Apply through SBM portal or local Gram Panchayat",
+        "Application approval by local authorities",
+        "Geotagging of constructed toilet for fund release"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "toilet subsidy sanitation latrine village sbm swachh bharat",
+      "summary": "₹12,000 financial assistance for building a toilet in rural households",
+      "keywords": [
+        "toilet",
+        "sanitation",
+        "subsidy"
+      ]
+    },
+    "scoring": {
+      "priority_score": 90,
+      "popularity_score": 91,
+      "relevance_weight": 0.88
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH038",
+    "scheme_name": "Mukhyamantri Abhyudaya Yojana",
+    "source": "https://abhyuday.up.gov.in",
+    "ministry": "Department of Social Welfare",
+    "government_level": "State",
+    "scheme_category": [
+      "Education",
+      "Youth"
+    ],
+    "target_beneficiary": [
+      "Students",
+      "Competitive Exam Aspirants"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 17,
+        "occupation": [
+          "student",
+          "unemployed"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "Uttar Pradesh"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "state",
+          "operator": "==",
+          "value": "Uttar Pradesh"
+        }
+      ],
+      "exceptions": [
+        "Applicant must be a permanent resident of Uttar Pradesh",
+        "Must clear the online entrance test for offline physical classes"
+      ]
+    },
+    "benefits": {
+      "type": "Free Coaching",
+      "amount": "Service based",
+      "disbursement": "Continuous",
+      "description": "Free coaching classes for competitive exams like UPSC, UPPSC, JEE, NEET, NDA, and CDS."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "UP Domicile Certificate",
+      "Education Marksheets",
+      "Passport Size Photograph"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://abhyuday.up.gov.in",
+      "steps": [
+        "Register on the Abhyuday portal",
+        "Select the exam category",
+        "Appear for the online entrance test for physical classes"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "free coaching upsc neet jee student up abhyudaya",
+      "summary": "Free competitive exam coaching for students in Uttar Pradesh",
+      "keywords": [
+        "coaching",
+        "education",
+        "exams"
+      ]
+    },
+    "scoring": {
+      "priority_score": 85,
+      "popularity_score": 89,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH039",
+    "scheme_name": "Senior Citizen Savings Scheme (SCSS)",
+    "source": "https://www.indiapost.gov.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Savings",
+      "Senior Citizens",
+      "Investment"
+    ],
+    "target_beneficiary": [
+      "Senior Citizens",
+      "Retirees"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 60,
+        "age_max": 100,
+        "occupation": [
+          "all",
+          "retired"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 60
+        }
+      ],
+      "exceptions": [
+        "Age limit relaxed to 55 years for those retired on superannuation or VRS",
+        "Age limit relaxed to 50 years for retired Defense Medical personnel"
+      ]
+    },
+    "benefits": {
+      "type": "High Interest Savings",
+      "amount": "Interest based (Up to ₹30 Lakh deposit)",
+      "disbursement": "Quarterly Interest",
+      "description": "Government-backed savings instrument offering high security and regular income to senior citizens."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "PAN Card",
+      "Age Proof",
+      "Proof of retirement (if applying before 60)"
+    ],
+    "application": {
+      "mode": [
+        "Post Office",
+        "Bank"
+      ],
+      "link": "https://www.indiapost.gov.in",
+      "steps": [
+        "Visit authorized bank or post office",
+        "Fill account opening form",
+        "Deposit the investment amount"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "senior citizen savings investment high interest retirement scss",
+      "summary": "High-interest savings scheme for senior citizens",
+      "keywords": [
+        "savings",
+        "senior citizen",
+        "investment"
+      ]
+    },
+    "scoring": {
+      "priority_score": 86,
+      "popularity_score": 88,
+      "relevance_weight": 0.84
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  }
+,
+  {
+    "scheme_id": "SCH040",
+    "scheme_name": "Mahila Samman Savings Certificate",
+    "source": "https://www.indiapost.gov.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Savings",
+      "Women",
+      "Investment"
+    ],
+    "target_beneficiary": [
+      "Women",
+      "Girl Child"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 0,
+        "age_max": 100,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "female"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        }
+      ],
+      "exceptions": [
+        "Maximum deposit limit is ₹2 Lakh per individual",
+        "Minor girls can open an account through a natural or legal guardian"
+      ]
+    },
+    "benefits": {
+      "type": "High Interest Savings",
+      "amount": "7.5% fixed interest",
+      "disbursement": "Maturity based (2 years)",
+      "description": "One-time small savings scheme for women offering a fixed interest rate of 7.5% for a two-year tenure."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "PAN Card",
+      "KYC Form"
+    ],
+    "application": {
+      "mode": [
+        "Post Office",
+        "Bank"
+      ],
+      "link": "https://www.indiapost.gov.in",
+      "steps": [
+        "Visit nearest Post Office or authorized bank",
+        "Fill the Account Opening Form (Form I)",
+        "Submit KYC documents and deposit amount"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "women savings investment mahila samman fixed deposit interest",
+      "summary": "Short-term high-interest savings scheme exclusively for women and girls",
+      "keywords": [
+        "savings",
+        "women",
+        "interest"
+      ]
+    },
+    "scoring": {
+      "priority_score": 88,
+      "popularity_score": 93,
+      "relevance_weight": 0.86
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH041",
+    "scheme_name": "Ayushman Bharat Digital Mission (ABHA Card)",
+    "source": "https://abha.abdm.gov.in",
+    "ministry": "Ministry of Health and Family Welfare",
+    "government_level": "Central",
+    "scheme_category": [
+      "Healthcare",
+      "Digital India"
+    ],
+    "target_beneficiary": [
+      "All Citizens"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 0,
+        "age_max": 100,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Digital Health ID",
+      "amount": "Free Service",
+      "disbursement": "Immediate",
+      "description": "Provides a 14-digit Ayushman Bharat Health Account (ABHA) number to store and share medical records digitally."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Mobile Number (Aadhaar linked)"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Mobile App"
+      ],
+      "link": "https://abha.abdm.gov.in",
+      "steps": [
+        "Visit ABHA portal or download app",
+        "Authenticate using Aadhaar or Driving License",
+        "Generate 14-digit ABHA number and download card"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "health id digital medical records abha card ayushman",
+      "summary": "Digital health ID card for storing and accessing personal medical records",
+      "keywords": [
+        "health",
+        "digital",
+        "records"
+      ]
+    },
+    "scoring": {
+      "priority_score": 91,
+      "popularity_score": 94,
+      "relevance_weight": 0.89
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH042",
+    "scheme_name": "DAY-NRLM (Aajeevika)",
+    "source": "https://aajeevika.gov.in",
+    "ministry": "Ministry of Rural Development",
+    "government_level": "Central",
+    "scheme_category": [
+      "Women",
+      "Employment",
+      "Livelihood"
+    ],
+    "target_beneficiary": [
+      "Rural Poor Women",
+      "Self Help Groups (SHGs)"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 60,
+        "income_max": 150000,
+        "occupation": [
+          "unemployed",
+          "laborer",
+          "farmer"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "female"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        }
+      ],
+      "exceptions": [
+        "Must be a member of a registered Self Help Group (SHG) at the village level"
+      ]
+    },
+    "benefits": {
+      "type": "Livelihood Support & Credit",
+      "amount": "Revolving Fund & Bank Linkage",
+      "disbursement": "Group based",
+      "description": "Financial support, skill training, and bank linkage for women SHGs to alleviate rural poverty."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "BPL Ration Card",
+      "SHG Membership Details",
+      "Bank Account Details"
+    ],
+    "application": {
+      "mode": [
+        "Offline",
+        "Gram Panchayat"
+      ],
+      "link": "https://aajeevika.gov.in",
+      "steps": [
+        "Form or join a local women's SHG",
+        "Register SHG with Gram Panchayat/Block Office",
+        "Apply for Revolving Fund and Community Investment Fund"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "shg women self help group rural livelihood loan aajeevika nrlm",
+      "summary": "Support and bank credit for rural women through Self Help Groups",
+      "keywords": [
+        "shg",
+        "livelihood",
+        "women"
+      ]
+    },
+    "scoring": {
+      "priority_score": 89,
+      "popularity_score": 85,
+      "relevance_weight": 0.87
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH043",
+    "scheme_name": "Soil Health Card Scheme",
+    "source": "https://soilhealth.dac.gov.in",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "government_level": "Central",
+    "scheme_category": [
+      "Agriculture",
+      "Environment"
+    ],
+    "target_beneficiary": [
+      "Farmers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 100,
+        "occupation": [
+          "farmer"
+        ],
+        "land_holding_required": true,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "farmer"
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Advisory Service",
+      "amount": "Free Soil Testing",
+      "disbursement": "Service based",
+      "description": "Provides farmers with a card containing crop-wise recommendations of nutrients and fertilizers to improve yield."
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Land Record (Khasra/Khatauni)"
+    ],
+    "application": {
+      "mode": [
+        "Offline",
+        "Agriculture Department"
+      ],
+      "link": "https://soilhealth.dac.gov.in",
+      "steps": [
+        "Provide soil sample to local agriculture department or testing lab",
+        "Wait for lab analysis",
+        "Receive Soil Health Card with fertilizer recommendations"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "soil test health card farmer agriculture fertilizer crop yield",
+      "summary": "Free soil testing and fertilizer recommendations for farmers",
+      "keywords": [
+        "soil",
+        "farmer",
+        "agriculture"
+      ]
+    },
+    "scoring": {
+      "priority_score": 84,
+      "popularity_score": 82,
+      "relevance_weight": 0.81
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH044",
+    "scheme_name": "Jal Jeevan Mission (Har Ghar Jal)",
+    "source": "https://jaljeevanmission.gov.in",
+    "ministry": "Ministry of Jal Shakti",
+    "government_level": "Central",
+    "scheme_category": [
+      "Infrastructure",
+      "Water",
+      "Health"
+    ],
+    "target_beneficiary": [
+      "Rural Households"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 100,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [],
+      "exceptions": [
+        "Targeted exclusively at rural households that lack functional tap water connections"
+      ]
+    },
+    "benefits": {
+      "type": "Infrastructure",
+      "amount": "Functional Tap Connection",
+      "disbursement": "Physical installation",
+      "description": "Aims to provide safe and adequate drinking water through individual household tap connections to all households in rural India."
+    },
+    "documents_required": [
+      "Aadhaar Card (of Head of Household)",
+      "Residence Proof / Ration Card"
+    ],
+    "application": {
+      "mode": [
+        "Gram Panchayat"
+      ],
+      "link": "https://jaljeevanmission.gov.in",
+      "steps": [
+        "Implemented automatically via Village Water and Sanitation Committees (VWSC)",
+        "Households register for tap connection via local Gram Panchayat"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "tap water drinking supply village rural jal jeevan mission jjm",
+      "summary": "Provision of safe tap water supply to rural households",
+      "keywords": [
+        "water",
+        "rural",
+        "infrastructure"
+      ]
+    },
+    "scoring": {
+      "priority_score": 95,
+      "popularity_score": 90,
+      "relevance_weight": 0.92
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  }
 ]
