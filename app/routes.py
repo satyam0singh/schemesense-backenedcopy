@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from typing import List
 from app.models import SchemeRequest, SchemeResponse, ChatRequest, ChatResponse, OfficeResponse
@@ -8,6 +9,13 @@ from app.utils.loader import loader
 from app.services.rag import rag_engine
 from app.services.chatbot import chatbot_engine
 from app.services.pdf_parser import pdf_parser_agent
+from app.utils.hashing import generate_file_hash
+from app.services.blockchain import BlockchainService
+
+# For hackathon demo, using a default instance (needs environment variable or fund generated address)
+# You can set ALGORAND_MNEMONIC in your environment
+blockchain_service = BlockchainService(os.getenv("ALGORAND_MNEMONIC"))
+
 
 router = APIRouter()
 
@@ -113,3 +121,61 @@ def get_nearest_offices(lat: float, lng: float):
     results = office_service.get_nearest_offices(lat, lng, limit=5)
     
     return results
+
+@router.post("/blockchain/store-hash")
+async def store_doc_hash(file: UploadFile = File(...)):
+    """
+    Hashes the uploaded document and stores it on the Algorand blockchain.
+    """
+    try:
+        file_bytes = await file.read()
+        doc_hash = generate_file_hash(file_bytes)
+        
+        # Store on Algorand
+        blockchain_result = blockchain_service.store_hash(doc_hash)
+        
+        return {
+            "status": "success",
+            "message": "Document hash successfully notarized on Algorand Testnet.",
+            **blockchain_result
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Blockchain Error: {str(e)}")
+
+@router.post("/blockchain/verify-doc")
+async def verify_doc_integrity(tx_id: str, file: UploadFile = File(...)):
+    """
+    Verifies the uploaded document against a hash stored in a blockchain transaction.
+    """
+    try:
+        file_bytes = await file.read()
+        current_hash = generate_file_hash(file_bytes)
+        
+        # Verify on Algorand
+        is_verified, result = blockchain_service.verify_hash(tx_id, current_hash)
+        
+        if is_verified:
+            return {
+                "status": "verified",
+                **result,
+                "tx_id": tx_id,
+                "explorer_url": f"https://testnet.algoscan.app/tx/{tx_id}"
+            }
+        else:
+            # Handle error message vs structured failure dict
+            if isinstance(result, dict):
+                return {
+                    "status": "failed",
+                    **result,
+                    "tx_id": tx_id,
+                    "explorer_url": f"https://testnet.algoscan.app/tx/{tx_id}"
+                }
+            else:
+                return {
+                    "status": "error",
+                    "message": result,
+                    "tx_id": tx_id
+                }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Verification Error: {str(e)}")
+

@@ -4,3 +4,5 @@ pydantic
 pypdf
 python-multipart
 google-generativeai
+py-algorand-sdk
+python-dotenv
