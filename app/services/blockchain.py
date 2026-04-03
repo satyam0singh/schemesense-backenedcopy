@@ -31,36 +31,58 @@ class BlockchainService:
     def store_hash(self, doc_hash: str):
         """
         Store a document hash as a transaction note on Algorand.
+        Includes a pre-flight balance check.
         """
-        params = self.client.suggested_params()
-        
-        # We store the hash in the transaction note (limit 1KB)
-        note = json.dumps({"type": "doc_verification", "hash": doc_hash}).encode()
-        
-        # Sending a 0-ALGO transaction to ourselves with the note
-        txn = transaction.PaymentTxn(
-            sender=self.address,
-            sp=params,
-            receiver=self.address,
-            amt=0,
-            note=note
-        )
-        
-        # Sign the transaction
-        signed_txn = txn.sign(self.private_key)
-        
-        # Send the transaction
-        txid = self.client.send_transaction(signed_txn)
-        
-        # Wait for confirmation
-        wait_for_confirmation(self.client, txid)
-        
-        return {
-            "tx_id": txid,
-            "hash_preview": f"{doc_hash[:10]}...",
-            "timestamp": datetime.utcnow().isoformat() + "Z",
-            "explorer_url": f"https://testnet.algoscan.app/tx/{txid}"
-        }
+        try:
+            # Pre-flight check: Account Balance
+            account_info = self.client.account_info(self.address)
+            balance = account_info.get("amount", 0)
+            
+            # Minimum balance needed: 0.001 ALGO (1,000 microAlgos) + account minimum (100,000 microAlgos)
+            # Actually, just for the fee, we need at least 1,000. 
+            # But Algorand requires a minimum balance of 0.1 ALGO (100,000 microAlgos) to stay active.
+            if balance < 1000:
+                raise Exception(f"Insufficient Funds: Account {self.address} has {balance} microAlgos. Need at least 1,000 for fee.")
+
+            params = self.client.suggested_params()
+            
+            # We store the hash in the transaction note (limit 1KB)
+            note = json.dumps({"type": "doc_verification", "hash": doc_hash}).encode()
+            
+            # Sending a 0-ALGO transaction to ourselves with the note
+            txn = transaction.PaymentTxn(
+                sender=self.address,
+                sp=params,
+                receiver=self.address,
+                amt=0,
+                note=note
+            )
+            
+            # Sign the transaction
+            signed_txn = txn.sign(self.private_key)
+            
+            # Send the transaction
+            txid = self.client.send_transaction(signed_txn)
+            
+            # Wait for confirmation
+            wait_for_confirmation(self.client, txid)
+            
+            return {
+                "tx_id": txid,
+                "hash_preview": f"{doc_hash[:10]}...",
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "explorer_url": f"https://testnet.algoscan.app/tx/{txid}",
+                "address": self.address
+            }
+        except Exception as e:
+            # Wrap Algorand specific errors into a cleaner message
+            error_msg = str(e)
+            if "overspend" in error_msg.lower():
+                raise Exception(f"Blockchain Error: Insufficient funds in account {self.address}. Please fund it at https://bank.testnet.algorand.network/")
+            elif "network" in error_msg.lower() or "connection" in error_msg.lower():
+                raise Exception(f"Blockchain Network Error: Could not connect to Algorand Node. Check your ALGOD_ADDRESS.")
+            else:
+                raise Exception(f"Blockchain Notarization Failed: {error_msg}")
 
     def verify_hash(self, txid: str, doc_hash: str):
         """
