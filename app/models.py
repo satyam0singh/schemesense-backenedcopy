@@ -22,8 +22,10 @@ class SchemeResponse(BaseModel):
 
 class ChatRequest(BaseModel):
     query: str
+    scheme: Optional[Dict[str, Any]] = None
     user_profile: Optional[Dict[str, Any]] = None
 
 class ChatResponse(BaseModel):
     response: str
     schemes: Optional[List[Dict[str, Any]]] = None
+    related_schemes: Optional[List[Dict[str, Any]]] = None

@@ -5,141 +5,145 @@ from app.utils.loader import loader
 from app.models import SchemeResponse
 
 class ChatbotEngine:
-    def chat_pipeline(self, user_query: str, user_profile: dict = None):
+    def chat_pipeline(self, user_query: str, scheme: dict = None, user_profile: dict = None):
+        """
+        Main entry point for the chatbot.
+        Logic: If a specific scheme context is provided, run scheme_chat_agent.
+        Otherwise, fallback to a general discovery assistant.
+        """
         if not user_query:
-            return {"response": "Hi there! I am your AI assistant. How can I help you find government schemes today?", "schemes": []}
-            
-        user_query_lower = user_query.lower()
+            return {"response": "Hi! I'm your AI Scheme Assistant. How can I help you today?", "schemes": []}
+
+        if scheme:
+            # 🎯 Context-Aware Mode (Priority)
+            return self.scheme_chat_agent(user_query, scheme, user_profile)
         
-        # 5. INTENT DETECTION (LIGHTWEIGHT)
-        if "eligible" in user_query_lower or "eligibility" in user_query_lower:
-            intent = "eligibility"
-        elif "suggest" in user_query_lower or "recommend" in user_query_lower:
-            intent = "recommendation"
-        else:
-            intent = "general"
+        # 🌐 General Discovery Mode
+        return self.general_chat_agent(user_query, user_profile)
+
+    def scheme_chat_agent(self, query: str, scheme: dict, user_profile: dict = None):
+        """
+        Processes queries about a specific scheme currently being viewed by the user.
+        """
+        query_l = query.lower()
+        name = scheme.get("scheme_name", "this scheme")
+        
+        # A. Context Extraction
+        benefits_obj = scheme.get("benefits", {})
+        benefits_text = benefits_obj.get("description", "Not specified")
+        if benefits_obj.get("amount"):
+            benefits_text = f"{benefits_obj.get('amount')} - {benefits_text}"
             
-        schemes_data = loader.schemes
-        if not schemes_data:
-            return {"response": "I'm currently unable to load our schemes database. Please try again soon.", "schemes": []}
-
-        response_text = ""
-        final_schemes = []
-
-        # C. Recommendation Query
-        if intent == "recommendation":
+        docs = scheme.get("documents_required", [])
+        docs_text = ", ".join(docs) if docs else "standard identification documents"
+        
+        target_group = scheme.get("target_beneficiary", ["citizens"])[0]
+        
+        # B. Intent Detection (Keyword-based)
+        if any(w in query_l for w in ["eligib", "can i", "am i", "fit"]):
+            # Eligibility Intent
             if user_profile and any(user_profile.values()):
-                # Use recommendation engine (Retrieval + Eligibility + Ranking)
-                top_responses = recommendation_engine.get_recommendations(user_profile, {"query": user_query})
-                
-                # Check for empty fallback
-                if top_responses and top_responses[0].scheme_name == "No Match Found":
-                    response_text = "I couldn't find any schemes that closely align with your profile. You might consider adjusting your details or trying a broader search."
+                is_el, conf, reason, match_type = eligibility_engine.evaluate(user_profile, scheme)
+                if is_el:
+                    response = f"Based on your profile, you appear to be a **{match_type.lower()} match** for {name}. {reason.split('.')[0]}."
                 else:
-                    top_2 = top_responses[:2]
-                    final_schemes = [s.model_dump() for s in top_responses]
-                    
-                    s1 = top_2[0] if len(top_2) > 0 else None
-                    s2 = top_2[1] if len(top_2) > 1 else None
-                    
-                    response_text = "Based on your profile, here are my top suggestions: "
-                    if s1:
-                        response_text += f"\n\n**1. {s1.scheme_name}** - It provides {s1.benefits}. With a confidence score of {int(s1.confidence_score*100)}%, you are a {s1.match_type.lower()} match."
-                    if s2:
-                        response_text += f"\n**2. {s2.scheme_name}** - Another strong choice in the {s2.category} category."
+                    response = f"Reviewing the requirements, you might not be eligible for {name} right now. {reason.split('.')[0]}."
             else:
-                response_text = "To suggest the best schemes accurately, I need a bit more information. Could you please provide your profile details like age, income, state, or occupation?"
-
-        # B. Eligibility Query
-        elif intent == "eligibility":
-            if user_profile and any(user_profile.values()):
-                # Run retrieval to find the specific scheme
-                faiss_results = rag_engine.search(user_query, top_k=3)
-                if not faiss_results:
-                    response_text = "I couldn't identify the specific scheme you're asking about. Can you clarify the name?"
-                else:
-                    target_scheme_id = faiss_results[0]["id"]
-                    target_scheme = next((s for s in schemes_data if s.get("scheme_id") == target_scheme_id), None)
-                    
-                    if target_scheme:
-                        is_el, conf, match_reason, match_type = eligibility_engine.evaluate(user_profile, target_scheme)
-                        name = target_scheme.get("scheme_name", "this scheme")
-                        
-                        # 6. EXPLANATION ENGINE
-                        if is_el:
-                            response_text = f"Great news! You appear to be eligible for the **{name}**. {match_reason.split('.')[0]}."
-                        else:
-                            response_text = f"You might not currently meet all the criteria for the **{name}**. {match_reason.split('.')[0]}."
-                        
-                        categories = target_scheme.get("scheme_category", [])
-                        cat_str = categories[0] if categories else "General"
-                        benefits_obj = target_scheme.get("benefits", {})
-                        benefits_text = benefits_obj.get("description", "benefits")
-                        if benefits_obj.get('amount'):
-                            benefits_text = f"{benefits_obj.get('amount')} - {benefits_text}"
-                            
-                        final_schemes.append(SchemeResponse(
-                            scheme_name=name,
-                            eligible=is_el,
-                            confidence_score=conf,
-                            match_reason=match_reason,
-                            benefits=benefits_text,
-                            application_link=target_scheme.get("application", {}).get("link", ""),
-                            category=cat_str,
-                            documents_required=target_scheme.get("documents_required", []),
-                            match_type=match_type,
-                            priority_tag="Standard"
-                        ).model_dump())
+                response = f"To check your eligibility for {name}, I need to know your age, income, and occupation. Generally, it targets {target_group}."
+        
+        elif any(w in query_l for w in ["document", "requir", "paper", "need"]):
+            # Documents Intent
+            response = f"To apply for **{name}**, you will typically need: {docs_text}. Make sure to have your Aadhaar card ready!"
+            
+        elif any(w in query_l for w in ["benefit", "get", "money", "amount", "help"]):
+            # Benefits Intent
+            response = f"**{name}** provides the following support: {benefits_text}. It's a great program for {target_group}."
+            
+        elif any(w in query_l for w in ["apply", "how to", "process", "register"]):
+            # Application Intent
+            mode = ", ".join(scheme.get("application", {}).get("mode", ["online"]))
+            link = scheme.get("application", {}).get("link", "")
+            response = f"You can apply for {name} via {mode}. "
+            if link:
+                response += f"The official link is {link}. I recommend checking the portal for the latest steps."
             else:
-                response_text = "To check your eligibility, I need to know a few details about you! What is your age, income, and occupation?"
-                
-        # A. General Query
+                response += "I recommend visiting your nearest CSC center for assistance."
+        
         else:
-            faiss_results = rag_engine.search(user_query, top_k=2)
-            if not faiss_results:
-                response_text = "I'm not exactly sure about that. Could you try rephrasing your question to include a specific scheme or topic like 'farmers'?"
-            else:
-                top_2_schemes = []
-                for res in faiss_results:
-                    sch = next((s for s in schemes_data if s.get("scheme_id") == res["id"]), None)
-                    if sch: top_2_schemes.append(sch)
-                
-                if top_2_schemes:
-                    s1 = top_2_schemes[0]
-                    name1 = s1.get("scheme_name")
-                    benefits_obj = s1.get("benefits", {})
-                    ben1 = benefits_obj.get("description", "helpful support")
-                    if benefits_obj.get("amount"):
-                        ben1 = f"{benefits_obj.get('amount')} - {ben1}"
-                    
-                    response_text = f"I found some relevant information. **{name1}** provides {ben1}."
-                    if len(top_2_schemes) > 1:
-                        s2 = top_2_schemes[1]
-                        name2 = s2.get("scheme_name")
-                        response_text += f"\nThere's also **{name2}**, which might be helpful."
-                    response_text += "\n\nWould you like me to check if you are eligible for these?"
-                    
-                    for sch in top_2_schemes:
-                        categories = sch.get("scheme_category", [])
-                        cat_str = categories[0] if categories else "General"
-                        benefits_obj = sch.get("benefits", {})
-                        benefits_text = benefits_obj.get("description", "")
-                        if benefits_obj.get('amount'):
-                            benefits_text = f"{benefits_obj.get('amount')} - {benefits_text}"
-                            
-                        final_schemes.append(SchemeResponse(
-                            scheme_name=sch.get("scheme_name", "Unknown"),
-                            eligible=True,
-                            confidence_score=0.0,
-                            match_reason="General inquiry result",
-                            benefits=benefits_text,
-                            application_link=sch.get("application", {}).get("link", ""),
-                            category=cat_str,
-                            documents_required=sch.get("documents_required", []),
-                            match_type="Info",
-                            priority_tag="Standard"
-                        ).model_dump())
+            # General Explanation
+            response = f"**{name}** is a {scheme.get('government_level', 'government')} scheme managed by the {scheme.get('ministry', 'relevant ministry')}. It aims to help {target_group} by providing {benefits_text}."
 
-        return {"response": response_text, "schemes": final_schemes}
+        # C. Related Suggestions
+        related = self.suggest_related_schemes(scheme, loader.schemes)
+        
+        return {
+            "response": response,
+            "related_schemes": related
+        }
+
+    def general_chat_agent(self, query: str, user_profile: dict = None):
+        """
+        Fallback logic for when no specific scheme is in focus.
+        Uses RAG to find relevant schemes.
+        """
+        query_l = query.lower()
+        
+        # Basic intent for general mode
+        if "suggest" in query_l or "recommend" in query_l or "find" in query_l:
+            if user_profile and any(user_profile.values()):
+                results = recommendation_engine.get_recommendations(user_profile)
+                # Filter out fallback
+                valid = [r for r in results if r.scheme_name != "No Match Found"]
+                if valid:
+                    top = valid[0]
+                    return {
+                        "response": f"I've found some great schemes for you! My top recommendation is **{top.scheme_name}**. It provides {top.benefits}. Would you like to know more about it?",
+                        "schemes": [s.model_dump() for s in valid]
+                    }
+            
+        # Default RAG search
+        search_results = rag_engine.search(query, top_k=2)
+        if not search_results:
+            return {"response": "I'm sorry, I couldn't find any schemes related to your query. Could you try rephrasing? For example, ask about 'schemes for farmers'.", "schemes": []}
+            
+        found_schemes = []
+        for res in search_results:
+            s_data = next((s for s in loader.schemes if s.get("scheme_id") == res["id"]), None)
+            if s_data: found_schemes.append(s_data)
+            
+        if found_schemes:
+            s1 = found_schemes[0]
+            name1 = s1.get("scheme_name")
+            return {
+                "response": f"I found some information about **{name1}** that might interest you. Would you like to check if you're eligible for it?",
+                "schemes": found_schemes
+            }
+            
+        return {"response": "I'm having trouble retrieving details right now. Please try again.", "schemes": []}
+
+    def suggest_related_schemes(self, current_scheme: dict, all_schemes: list):
+        """
+        Finds schemes in the same category, excluding the current one.
+        """
+        current_id = current_scheme.get("scheme_id")
+        categories = set(current_scheme.get("scheme_category", []))
+        
+        related = []
+        for scheme in all_schemes:
+            if scheme.get("scheme_id") == current_id:
+                continue
+                
+            scheme_cats = set(scheme.get("scheme_category", []))
+            # Intersection of categories
+            if categories & scheme_cats:
+                # Store simplified version for UI
+                related.append({
+                    "scheme_id": scheme.get("scheme_id"),
+                    "scheme_name": scheme.get("scheme_name"),
+                    "category": list(scheme_cats)[0] if scheme_cats else "General"
+                })
+                
+        # Return top 3 related
+        return related[:3]
 
 chatbot_engine = ChatbotEngine()

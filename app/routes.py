@@ -46,11 +46,12 @@ def get_schemes(user_req: SchemeRequest):
 def get_chat(chat_req: ChatRequest):
     """
     Simulates an intelligent AI assistant.
-    Takes a query string and optional user_profile.
+    Takes a query string, optional scheme context, and optional user_profile.
     """
     # Lazy load the ML and FAISS data only when the first request hits
     initialize_if_needed()
 
     user_profile = chat_req.user_profile if chat_req.user_profile else None
+    scheme_context = chat_req.scheme if chat_req.scheme else None
     
-    return chatbot_engine.chat_pipeline(chat_req.query, user_profile)
+    return chatbot_engine.chat_pipeline(chat_req.query, scheme_context, user_profile)

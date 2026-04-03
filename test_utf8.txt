@@ -1,0 +1,19 @@
+﻿--- TESTING CONTEXT-AWARE CHATBOT ---
+
+QUERY: What are the benefits?
+RESPONSE: To check your eligibility for PM Kisan Samman Nidhi, I need to know your age, income, and occupation. Generally, it targets Small and Marginal Farmers.
+RELATED: ['PM Fasal Bima Yojana', 'Solar Pump Subsidy Scheme', 'Kisan Credit Card (KCC)']
+
+QUERY: What documents do I need?
+RESPONSE: To apply for **PM Kisan Samman Nidhi**, you will typically need: Aadhaar Card, Land Records, Bank Account. Make sure to have your Aadhaar card ready!
+RELATED: ['PM Fasal Bima Yojana', 'Solar Pump Subsidy Scheme', 'Kisan Credit Card (KCC)']
+
+QUERY: Am I eligible?
+RESPONSE: Based on your profile, you appear to be a **full match** for PM Kisan Samman Nidhi. Strong Match: User perfectly fits criteria.
+RELATED: ['PM Fasal Bima Yojana', 'Solar Pump Subsidy Scheme', 'Kisan Credit Card (KCC)']
+
+QUERY: How to apply?
+RESPONSE: You can apply for PM Kisan Samman Nidhi via Online, CSC. The official link is https://pmkisan.gov.in. I recommend checking the portal for the latest steps.
+RELATED: ['PM Fasal Bima Yojana', 'Solar Pump Subsidy Scheme', 'Kisan Credit Card (KCC)']
+
+QUERY: Tell me more about this
