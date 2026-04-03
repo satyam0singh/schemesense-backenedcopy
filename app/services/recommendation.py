@@ -24,6 +24,10 @@ class RecommendationEngine:
             query_parts.append(user_data["gender"])
         if user_data.get("state"):
             query_parts.append(f"{user_data['state']}")
+        if user_data.get("startup_stage"):
+            query_parts.append(user_data["startup_stage"])
+        if user_data.get("startup_recognition"):
+            query_parts.append(user_data["startup_recognition"])
         
         query_string = " ".join(query_parts) if query_parts else "general support schemes"
         

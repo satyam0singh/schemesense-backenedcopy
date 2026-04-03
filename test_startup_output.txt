@@ -1,0 +1,9 @@
+﻿
+--- TESTING STARTUP RECOMMENDATION ---
+Matched 2 schemes.
+- UP Startup Policy Seed & Prototype Grant (Match: Full, Reason: Strong Match: User perfectly fits criteria. Matched state)
+- Startup India Seed Fund Scheme (Match: Full, Reason: Strong Match: User perfectly fits criteria. Matched occupation)
+
+--- TESTING STARTUP CHAT DISCOVERY ---
+RESPONSE: I found some information about **Prime Minister's Employment Generation Programme (PMEGP)** that might interest you. Would you like to check if you're eligible for it?
+FOUND SCHEMES: ["Prime Minister's Employment Generation Programme (PMEGP)", 'PM Mudra Yojana']
