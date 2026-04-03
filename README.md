@@ -1,6 +1,6 @@
 # AI-Powered Government Scheme Recommendation System (Winner-Level AI)
 
-A robust, production-ready FastAPI backend designed to instantly recommend highly relevant government schemes to citizens using a hybrid approach of **Retrieval Augmented Generation (RAG)** and **Probabilistic Confidence Scoring (Fuzzy Logic)**. 
+A robust, lightweight production-ready FastAPI backend designed to instantly recommend highly relevant government schemes to citizens using a hybrid approach of **Fast Keyword Search** and **Probabilistic Confidence Scoring (Fuzzy Logic)** optimized for free-tier deployments. 
 
 Additionally, this repository includes a **LangGraph-based Multi-Agent Prototype**, capable of executing multi-step conversational and analytical workflows.
 
@@ -8,10 +8,10 @@ Additionally, this repository includes a **LangGraph-based Multi-Agent Prototype
 
 This system has evolved from a strict rule-based filter into an intelligent, scalable AI engine.
 
-### 1. 🧠 High-Density RAG Pipeline (FastAPI)
-We use `sentence-transformers/all-MiniLM-L6-v2` securely stored in a local FAISS index. Instead of merely mapping a single field, the engine constructs a dense semantic foundation by fusing:
-`combined_text = search_text + summary + keywords`
-This ensures unparalleled semantic retrieval accuracy without calling external paid APIs.
+### 1. 🔍 Fast Keyword Retrieval Pipeline (FastAPI)
+Optimized for memory-constrained environments like Render Free Tier, we use a rapid native-Python keyword scoring engine. Instead of merely mapping a single field, the engine constructs a foundational relevance score by fusing:
+`score = sum(word in search_text for word in query.lower().split())`
+This ensures unparalleled retrieval speed and accuracy with zero heavy ML dependencies (no GPU/RAM hogs).
 
 ### 2. 📊 Probabilistic Eligibility (Fuzzy Logic)
 Real-world users rarely match 100% of stringent government logic perfectly. We abolished strict boolean filtering and replaced it with an intelligent **Confidence Engine**:
@@ -22,7 +22,7 @@ Real-world users rarely match 100% of stringent government logic perfectly. We a
 
 ### 3. 🏆 Multi-Factor Intelligence Ranking
 We do not sort simply by priority score. Outcomes are algorithmically ranked using a blended formula:
-`final_score = (0.5 * Confidence) + (0.3 * Priority Score) + (0.2 * FAISS Semantic Similarity)`
+`final_score = (0.5 * Confidence) + (0.3 * Priority Score) + (0.2 * Keyword Relevance Score)`
 This guarantees the absolute best, most personalized recommendations surface first.
 
 ### 4. 🤖 LangGraph Multi-Agent Orchestration
@@ -55,11 +55,10 @@ backend/
 │   ├── routes.py                   # API Endpoint controllers
 │   ├── models.py                   # Premium Validation schemas
 │   ├── services/
-│   │   ├── rag.py                  # Dense FAISS semantic engine
+│   │   ├── rag.py                  # Fast Keyword Retrieval engine
 │   │   ├── eligibility.py          # Fuzzy matching & normalizer
 │   │   └── recommendation.py       # Multi-factor ranking orchestration
 │   └── utils/
-│       ├── embeddings.py           # Model singleton
 │       └── loader.py               # Pre-validation memory wrapper
 │
 ├── project/                        # LangGraph Multi-Agent Prototype
@@ -147,5 +146,5 @@ python main.py
 ---
 
 ## 📈 Scalability Story (Production Roadmap)
-While currently optimized for local hackathon deployment via FAISS CPU architectures, this backend is conceptually bound for massive scaling. 
-**We can infinitely scale this recommendation engine by migrating the local FAISS vector arrays to distributed vector databases like Pinecone or Weaviate, whilst securely deploying the stateless FastAPI nodes horizontally behind load balancers. Integrating the multi-agent capabilities built in `/project` opens up possibilities for autonomous, conversational insights complementing our real-time API.**
+While currently optimized for Render Free Tier (using lightweight fast keyword mapping instead of memory-heavy ML models), this backend is conceptually bound for massive scaling. 
+**We can infinitely scale this recommendation engine by swapping the keyword matching module back to a distributed vector database like Pinecone or Weaviate, whilst securely deploying the stateless FastAPI nodes horizontally behind load balancers. Integrating the multi-agent capabilities built in `/project` opens up possibilities for autonomous, conversational insights complementing our real-time API.**
