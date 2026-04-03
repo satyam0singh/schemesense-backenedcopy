@@ -3,12 +3,21 @@ from typing import List
 from app.models import SchemeRequest, SchemeResponse
 from app.services.recommendation import recommendation_engine
 
+# Need these for lazy loading
+from app.utils.loader import loader
+from app.services.rag import rag_engine
+
 router = APIRouter()
 
-@router.get("/")
-def read_root():
-    """Root endpoint to welcome users and guide them to documentation."""
-    return {"message": "Welcome to SchemeSense API! Navigate to /docs for Swagger documentation."}
+initialized = False
+
+def initialize_if_needed():
+    global initialized
+    if not initialized:
+        print("Lazy Loading: Building FAISS Index and loading schemes...")
+        schemes = loader.load_data()
+        rag_engine.build_index(schemes)
+        initialized = True
 
 @router.get("/health")
 def health_check():
@@ -21,6 +30,9 @@ def get_schemes(user_req: SchemeRequest):
     Main endpoint to get recommended government schemes.
     Takes user criteria, passes it to the RAG + Eligibility + Recommendation engine.
     """
+    # Lazy load the ML and FAISS data only when the first request hits
+    initialize_if_needed()
+
     # Convert Pydantic object to dict, ignoring None values
     user_data = user_req.model_dump(exclude_unset=True)
     
