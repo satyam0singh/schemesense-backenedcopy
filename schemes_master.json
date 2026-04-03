@@ -1,0 +1,1471 @@
+[
+  {
+    "scheme_id": "SCH001",
+    "scheme_name": "PM Kisan Samman Nidhi",
+    "source": "https://pmkisan.gov.in",
+    "ministry": "Ministry of Agriculture",
+    "government_level": "Central",
+    "scheme_category": [
+      "Agriculture",
+      "Income Support"
+    ],
+    "target_beneficiary": [
+      "Farmers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 100,
+        "income_max": 200000,
+        "occupation": [
+          "farmer"
+        ],
+        "land_holding_required": true,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "farmer"
+        },
+        {
+          "field": "income",
+          "operator": "<=",
+          "value": 200000
+        }
+      ],
+      "exceptions": [
+        "Institutional landholders are not eligible",
+        "Income tax payers are excluded"
+      ]
+    },
+    "benefits": {
+      "type": "Direct Income Support",
+      "amount": "₹6000/year",
+      "disbursement": "₹2000 every 4 months",
+      "description": "Financial assistance to small and marginal farmers"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Land Ownership Records"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "CSC Center"
+      ],
+      "link": "https://pmkisan.gov.in",
+      "steps": [
+        "Register farmer details",
+        "Verify Aadhaar",
+        "Submit bank details"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "farmer income support agriculture subsidy pm kisan scheme india",
+      "summary": "Provides ₹6000 per year to eligible farmers",
+      "keywords": [
+        "farmer",
+        "income support",
+        "agriculture"
+      ]
+    },
+    "scoring": {
+      "priority_score": 90,
+      "popularity_score": 95,
+      "relevance_weight": 0.85
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH002",
+    "scheme_name": "Ayushman Bharat PM-JAY",
+    "source": "https://pmjay.gov.in",
+    "ministry": "Ministry of Health",
+    "government_level": "Central",
+    "scheme_category": [
+      "Healthcare",
+      "Insurance"
+    ],
+    "target_beneficiary": [
+      "Low Income Families"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 0,
+        "age_max": 100,
+        "income_max": 500000,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "income",
+          "operator": "<=",
+          "value": 500000
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Health Insurance",
+      "amount": "₹5 lakh/year",
+      "disbursement": "Annual",
+      "description": "Cashless health insurance"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Ration Card",
+      "Family ID"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Hospital Desk"
+      ],
+      "link": "https://pmjay.gov.in",
+      "steps": [
+        "Check eligibility",
+        "Generate card",
+        "Visit empanelled hospital"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "health insurance medical family hospital ayushman bharat",
+      "summary": "Provides ₹5 lakh annual medical insurance",
+      "keywords": [
+        "health",
+        "insurance",
+        "medical"
+      ]
+    },
+    "scoring": {
+      "priority_score": 95,
+      "popularity_score": 98,
+      "relevance_weight": 0.92
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH003",
+    "scheme_name": "PM Awas Yojana",
+    "source": "https://pmaymis.gov.in",
+    "ministry": "Ministry of Housing",
+    "government_level": "Central",
+    "scheme_category": [
+      "Housing"
+    ],
+    "target_beneficiary": [
+      "EWS",
+      "LIG"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "income_max": 300000,
+        "occupation": [
+          "all"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "income",
+          "operator": "<=",
+          "value": 300000
+        }
+      ],
+      "exceptions": [
+        "Applicant should not own pucca house"
+      ]
+    },
+    "benefits": {
+      "type": "Housing Subsidy",
+      "amount": "₹2.5 lakh",
+      "disbursement": "Installments",
+      "description": "Affordable housing assistance"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Income Certificate"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://pmaymis.gov.in",
+      "steps": [
+        "Register",
+        "Upload documents",
+        "Submit"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "housing subsidy home low income pm awas",
+      "summary": "Subsidy for affordable housing",
+      "keywords": [
+        "housing",
+        "home",
+        "subsidy"
+      ]
+    },
+    "scoring": {
+      "priority_score": 88,
+      "popularity_score": 90,
+      "relevance_weight": 0.84
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH004",
+    "scheme_name": "PM Mudra Yojana",
+    "source": "https://mudra.org.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Business",
+      "Loan"
+    ],
+    "target_beneficiary": [
+      "Entrepreneurs",
+      "Small Businesses"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "income_max": 1000000,
+        "occupation": [
+          "self-employed",
+          "business"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": [
+        "Existing defaulters are not eligible"
+      ]
+    },
+    "benefits": {
+      "type": "Business Loan",
+      "amount": "Up to ₹10 lakh",
+      "disbursement": "Loan based",
+      "description": "Provides loans to small businesses"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "PAN Card",
+      "Business Plan"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Bank"
+      ],
+      "link": "https://mudra.org.in",
+      "steps": [
+        "Apply at bank",
+        "Submit documents",
+        "Loan approval"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "business loan startup mudra scheme india",
+      "summary": "Loan up to ₹10 lakh for small businesses",
+      "keywords": [
+        "loan",
+        "business",
+        "startup"
+      ]
+    },
+    "scoring": {
+      "priority_score": 85,
+      "popularity_score": 92,
+      "relevance_weight": 0.82
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH006",
+    "scheme_name": "PM Ujjwala Yojana",
+    "source": "https://pmuy.gov.in",
+    "ministry": "Ministry of Petroleum",
+    "government_level": "Central",
+    "scheme_category": [
+      "Women",
+      "Subsidy"
+    ],
+    "target_beneficiary": [
+      "Women"
+    ],
+    "eligibility": {
+      "structured": {
+        "income_max": 200000,
+        "gender": [
+          "female"
+        ],
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Gas Subsidy",
+      "amount": "Free LPG connection",
+      "description": "Clean cooking fuel for women"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Ration Card"
+    ],
+    "application": {
+      "mode": [
+        "Offline"
+      ],
+      "link": "https://pmuy.gov.in",
+      "steps": [
+        "Visit distributor",
+        "Submit form"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "lpg gas subsidy women ujjwala scheme",
+      "summary": "Free LPG connection for women",
+      "keywords": [
+        "gas",
+        "lpg",
+        "women"
+      ]
+    },
+    "scoring": {
+      "priority_score": 90,
+      "popularity_score": 96,
+      "relevance_weight": 0.88
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH007",
+    "scheme_name": "PM SVANidhi",
+    "source": "https://pmsvanidhi.mohua.gov.in",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "government_level": "Central",
+    "scheme_category": [
+      "Street Vendors",
+      "Loan"
+    ],
+    "target_beneficiary": [
+      "Street Vendors"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "income_max": 300000,
+        "occupation": [
+          "street_vendor"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "street_vendor"
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Working Capital Loan",
+      "amount": "₹10000",
+      "disbursement": "Loan",
+      "description": "Initial working capital loan for vendors"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Vendor Certificate"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Bank"
+      ],
+      "link": "https://pmsvanidhi.mohua.gov.in",
+      "steps": [
+        "Register",
+        "Verify vendor ID",
+        "Submit loan request"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "street vendor loan pmsvanidhi",
+      "summary": "Loan support for street vendors",
+      "keywords": [
+        "vendor",
+        "loan",
+        "street"
+      ]
+    },
+    "scoring": {
+      "priority_score": 85,
+      "popularity_score": 90,
+      "relevance_weight": 0.82
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH008",
+    "scheme_name": "PM Fasal Bima Yojana",
+    "source": "https://pmfby.gov.in",
+    "ministry": "Ministry of Agriculture",
+    "government_level": "Central",
+    "scheme_category": [
+      "Agriculture",
+      "Insurance"
+    ],
+    "target_beneficiary": [
+      "Farmers"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "income_max": 500000,
+        "occupation": [
+          "farmer"
+        ],
+        "land_holding_required": true,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "farmer"
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Crop Insurance",
+      "amount": "Variable based on crop",
+      "disbursement": "Seasonal",
+      "description": "Insurance coverage against crop failure"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Land Record",
+      "Crop Details"
+    ],
+    "application": {
+      "mode": [
+        "Online",
+        "Bank"
+      ],
+      "link": "https://pmfby.gov.in",
+      "steps": [
+        "Register crop",
+        "Upload documents",
+        "Submit"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "crop insurance farmer agriculture fasal bima",
+      "summary": "Crop insurance for farmers",
+      "keywords": [
+        "farmer",
+        "crop",
+        "insurance"
+      ]
+    },
+    "scoring": {
+      "priority_score": 90,
+      "popularity_score": 94,
+      "relevance_weight": 0.87
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH009",
+    "scheme_name": "Sukanya Samriddhi Yojana",
+    "source": "https://nsiindia.gov.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Savings",
+      "Girl Child"
+    ],
+    "target_beneficiary": [
+      "Girl Child"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 0,
+        "age_max": 10,
+        "occupation": [
+          "all"
+        ],
+        "state": [
+          "All"
+        ],
+        "gender": [
+          "female"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 10
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Savings Scheme",
+      "amount": "High interest savings",
+      "disbursement": "Maturity based",
+      "description": "Long term savings for girl child"
+    },
+    "documents_required": [
+      "Birth Certificate",
+      "Aadhaar"
+    ],
+    "application": {
+      "mode": [
+        "Post Office",
+        "Bank"
+      ],
+      "link": "https://nsiindia.gov.in",
+      "steps": [
+        "Open account",
+        "Submit child details"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "girl child savings sukanya scheme",
+      "summary": "Savings scheme for girl child",
+      "keywords": [
+        "girl",
+        "savings",
+        "education"
+      ]
+    },
+    "scoring": {
+      "priority_score": 88,
+      "popularity_score": 91,
+      "relevance_weight": 0.84
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH010",
+    "scheme_name": "Stand Up India",
+    "source": "https://standupmitra.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Business",
+      "Loan"
+    ],
+    "target_beneficiary": [
+      "Women",
+      "SC",
+      "ST"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "occupation": [
+          "entrepreneur"
+        ],
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Business Loan",
+      "amount": "₹10 lakh - ₹1 crore",
+      "disbursement": "Loan",
+      "description": "Loans for entrepreneurs"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "PAN",
+      "Business Plan"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://standupmitra.in",
+      "steps": [
+        "Register",
+        "Submit proposal",
+        "Bank verification"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "startup loan women sc st",
+      "summary": "Business loan scheme",
+      "keywords": [
+        "startup",
+        "loan",
+        "women"
+      ]
+    },
+    "scoring": {
+      "priority_score": 87,
+      "popularity_score": 89,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH011",
+    "scheme_name": "Startup India Seed Fund Scheme",
+    "source": "https://startupindia.gov.in",
+    "ministry": "Ministry of Commerce and Industry",
+    "government_level": "Central",
+    "scheme_category": [
+      "Startup",
+      "Funding"
+    ],
+    "target_beneficiary": [
+      "Entrepreneurs",
+      "Startups"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "income_max": 1000000,
+        "occupation": [
+          "entrepreneur",
+          "startup_founder"
+        ],
+        "land_holding_required": false,
+        "state": [
+          "All"
+        ],
+        "caste_category": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "in",
+          "value": [
+            "entrepreneur",
+            "startup_founder"
+          ]
+        }
+      ],
+      "exceptions": [
+        "Startup must be DPIIT recognized"
+      ]
+    },
+    "benefits": {
+      "type": "Seed Funding",
+      "amount": "Up to ₹50 lakh",
+      "disbursement": "Milestone based",
+      "description": "Financial support for early-stage startups"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "PAN",
+      "Startup Registration",
+      "Pitch Deck"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://startupindia.gov.in",
+      "steps": [
+        "Register startup",
+        "Submit pitch",
+        "Evaluation",
+        "Approval"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "startup seed fund entrepreneur business grant",
+      "summary": "Seed funding support for startups",
+      "keywords": [
+        "startup",
+        "funding",
+        "business"
+      ]
+    },
+    "scoring": {
+      "priority_score": 89,
+      "popularity_score": 91,
+      "relevance_weight": 0.86
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH012",
+    "scheme_name": "Atal Pension Yojana",
+    "source": "https://npscra.nsdl.co.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Pension"
+    ],
+    "target_beneficiary": [
+      "Workers",
+      "Citizens"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 40,
+        "occupation": [
+          "all"
+        ],
+        "state": [
+          "All"
+        ],
+        "gender": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 40
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Pension",
+      "amount": "₹1000–₹5000/month",
+      "disbursement": "Monthly after 60",
+      "description": "Guaranteed pension after retirement"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Bank Account"
+    ],
+    "application": {
+      "mode": [
+        "Bank",
+        "Online"
+      ],
+      "link": "https://npscra.nsdl.co.in",
+      "steps": [
+        "Open APY account",
+        "Select contribution"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "retirement pension apy monthly income",
+      "summary": "Monthly pension after retirement",
+      "keywords": [
+        "pension",
+        "retirement"
+      ]
+    },
+    "scoring": {
+      "priority_score": 88,
+      "popularity_score": 90,
+      "relevance_weight": 0.84
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH013",
+    "scheme_name": "National Pension Scheme",
+    "source": "https://enps.nsdl.com",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Pension",
+      "Retirement"
+    ],
+    "target_beneficiary": [
+      "Professionals",
+      "Employees"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 70,
+        "occupation": [
+          "all"
+        ],
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Retirement Corpus",
+      "amount": "Contribution based",
+      "disbursement": "Post retirement",
+      "description": "Long-term retirement planning"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "PAN",
+      "Bank Account"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://enps.nsdl.com",
+      "steps": [
+        "Register",
+        "Choose plan",
+        "Contribute"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "retirement pension nps investment",
+      "summary": "Retirement savings scheme",
+      "keywords": [
+        "retirement",
+        "pension"
+      ]
+    },
+    "scoring": {
+      "priority_score": 87,
+      "popularity_score": 89,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH014",
+    "scheme_name": "PM Suraksha Bima Yojana",
+    "source": "https://jansuraksha.gov.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Insurance",
+      "Accident"
+    ],
+    "target_beneficiary": [
+      "Citizens"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 70,
+        "occupation": [
+          "all"
+        ],
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Accident Insurance",
+      "amount": "₹2 lakh",
+      "disbursement": "Claim based",
+      "description": "Insurance against accidental death/disability"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Bank Account"
+    ],
+    "application": {
+      "mode": [
+        "Bank"
+      ],
+      "link": "https://jansuraksha.gov.in",
+      "steps": [
+        "Visit bank",
+        "Enroll",
+        "Pay premium"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "insurance accident claim pmsby",
+      "summary": "₹2 lakh accident insurance",
+      "keywords": [
+        "insurance",
+        "accident"
+      ]
+    },
+    "scoring": {
+      "priority_score": 86,
+      "popularity_score": 92,
+      "relevance_weight": 0.84
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH015",
+    "scheme_name": "PM Jeevan Jyoti Bima Yojana",
+    "source": "https://jansuraksha.gov.in",
+    "ministry": "Ministry of Finance",
+    "government_level": "Central",
+    "scheme_category": [
+      "Insurance",
+      "Life Cover"
+    ],
+    "target_beneficiary": [
+      "Adults"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "age_max": 50,
+        "occupation": [
+          "all"
+        ],
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 18
+        },
+        {
+          "field": "age",
+          "operator": "<=",
+          "value": 50
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Life Insurance",
+      "amount": "₹2 lakh",
+      "disbursement": "Claim based",
+      "description": "Life insurance cover"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Bank Account"
+    ],
+    "application": {
+      "mode": [
+        "Bank"
+      ],
+      "link": "https://jansuraksha.gov.in",
+      "steps": [
+        "Enroll via bank",
+        "Pay premium"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "life insurance pmjjby",
+      "summary": "₹2 lakh life insurance",
+      "keywords": [
+        "life insurance"
+      ]
+    },
+    "scoring": {
+      "priority_score": 85,
+      "popularity_score": 91,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH019",
+    "scheme_name": "Widow Pension Scheme",
+    "source": "https://socialwelfare.gov.in",
+    "ministry": "Social Welfare",
+    "government_level": "State",
+    "scheme_category": [
+      "Women",
+      "Pension"
+    ],
+    "target_beneficiary": [
+      "Widows"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 18,
+        "income_max": 200000,
+        "gender": [
+          "female"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "gender",
+          "operator": "==",
+          "value": "female"
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Monthly Pension",
+      "amount": "₹1000/month",
+      "disbursement": "Monthly",
+      "description": "Financial support for widows"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Death Certificate"
+    ],
+    "application": {
+      "mode": [
+        "Offline",
+        "Online"
+      ],
+      "link": "https://socialwelfare.gov.in",
+      "steps": [
+        "Apply",
+        "Verify documents"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "widow महिला pension support",
+      "summary": "Monthly pension for widows",
+      "keywords": [
+        "widow",
+        "pension"
+      ]
+    },
+    "scoring": {
+      "priority_score": 84,
+      "popularity_score": 87,
+      "relevance_weight": 0.82
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH020",
+    "scheme_name": "Old Age Pension Scheme",
+    "source": "https://socialwelfare.gov.in",
+    "ministry": "Social Welfare",
+    "government_level": "State",
+    "scheme_category": [
+      "Senior Citizens",
+      "Pension"
+    ],
+    "target_beneficiary": [
+      "Senior Citizens"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 60,
+        "income_max": 200000
+      },
+      "logic_rules": [
+        {
+          "field": "age",
+          "operator": ">=",
+          "value": 60
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Monthly Pension",
+      "amount": "₹1000/month",
+      "disbursement": "Monthly",
+      "description": "Pension for senior citizens"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Age Proof"
+    ],
+    "application": {
+      "mode": [
+        "Offline",
+        "Online"
+      ],
+      "link": "https://socialwelfare.gov.in",
+      "steps": [
+        "Apply",
+        "Submit proof"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "senior citizen pension old age",
+      "summary": "Monthly pension for elderly",
+      "keywords": [
+        "old age",
+        "pension"
+      ]
+    },
+    "scoring": {
+      "priority_score": 85,
+      "popularity_score": 89,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH022",
+    "scheme_name": "Free Laptop Scheme",
+    "source": "https://upcmo.up.nic.in",
+    "ministry": "Education Department",
+    "government_level": "State",
+    "scheme_category": [
+      "Education",
+      "Technology"
+    ],
+    "target_beneficiary": [
+      "Students"
+    ],
+    "eligibility": {
+      "structured": {
+        "age_min": 15,
+        "age_max": 25,
+        "occupation": [
+          "student"
+        ],
+        "state": [
+          "Uttar Pradesh"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "student"
+        }
+      ],
+      "exceptions": [
+        "Minimum academic performance required"
+      ]
+    },
+    "benefits": {
+      "type": "Technology Support",
+      "amount": "Laptop Device",
+      "disbursement": "One-time",
+      "description": "Free laptop for eligible students"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Marksheet",
+      "School ID"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://upcmo.up.nic.in",
+      "steps": [
+        "Register",
+        "Upload marksheet",
+        "Verification"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "student laptop education digital support",
+      "summary": "Free laptop for students",
+      "keywords": [
+        "student",
+        "laptop",
+        "education"
+      ]
+    },
+    "scoring": {
+      "priority_score": 86,
+      "popularity_score": 89,
+      "relevance_weight": 0.83
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH023",
+    "scheme_name": "National Food Security Scheme",
+    "source": "https://nfsa.gov.in",
+    "ministry": "Ministry of Consumer Affairs",
+    "government_level": "Central",
+    "scheme_category": [
+      "Food",
+      "Subsidy"
+    ],
+    "target_beneficiary": [
+      "BPL Families"
+    ],
+    "eligibility": {
+      "structured": {
+        "income_max": 200000,
+        "occupation": [
+          "all"
+        ],
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "income",
+          "operator": "<=",
+          "value": 200000
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Food Subsidy",
+      "amount": "Subsidized grains",
+      "disbursement": "Monthly",
+      "description": "Low-cost ration for eligible families"
+    },
+    "documents_required": [
+      "Ration Card",
+      "Aadhaar"
+    ],
+    "application": {
+      "mode": [
+        "Offline"
+      ],
+      "link": "https://nfsa.gov.in",
+      "steps": [
+        "Apply for ration card",
+        "Verification"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "food ration subsidy bpl",
+      "summary": "Subsidized food grains",
+      "keywords": [
+        "ration",
+        "food",
+        "subsidy"
+      ]
+    },
+    "scoring": {
+      "priority_score": 90,
+      "popularity_score": 95,
+      "relevance_weight": 0.89
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  },
+  {
+    "scheme_id": "SCH024",
+    "scheme_name": "Solar Pump Subsidy Scheme",
+    "source": "https://mnre.gov.in",
+    "ministry": "Ministry of New and Renewable Energy",
+    "government_level": "Central",
+    "scheme_category": [
+      "Agriculture",
+      "Solar"
+    ],
+    "target_beneficiary": [
+      "Farmers"
+    ],
+    "eligibility": {
+      "structured": {
+        "occupation": [
+          "farmer"
+        ],
+        "land_holding_required": true,
+        "state": [
+          "All"
+        ]
+      },
+      "logic_rules": [
+        {
+          "field": "occupation",
+          "operator": "==",
+          "value": "farmer"
+        }
+      ],
+      "exceptions": []
+    },
+    "benefits": {
+      "type": "Subsidy",
+      "amount": "Up to 60%",
+      "disbursement": "One-time",
+      "description": "Solar irrigation pump subsidy"
+    },
+    "documents_required": [
+      "Aadhaar",
+      "Land Records"
+    ],
+    "application": {
+      "mode": [
+        "Online"
+      ],
+      "link": "https://mnre.gov.in",
+      "steps": [
+        "Register",
+        "Upload land proof"
+      ]
+    },
+    "ai_fields": {
+      "search_text": "solar agriculture pump farmer subsidy",
+      "summary": "Solar pump subsidy for farmers",
+      "keywords": [
+        "solar",
+        "farmer",
+        "pump"
+      ]
+    },
+    "scoring": {
+      "priority_score": 89,
+      "popularity_score": 90,
+      "relevance_weight": 0.86
+    },
+    "validity": {
+      "active": true,
+      "last_verified": "2026-03-31"
+    }
+  }
+]
