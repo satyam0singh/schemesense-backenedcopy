@@ -35,8 +35,8 @@ class PDFParserAgent:
 
     def parse_scheme_with_llm(self, text: str) -> dict:
         """
-        Uses Gemini to extract structured scheme data from raw text.
-        Includes model fallback for robustness (flash-latest -> pro).
+        Uses Gemini 2.5 (2026 standard) to extract structured scheme data.
+        Includes robust fallback (2.5-flash -> 2.5-pro -> 2.0-flash).
         """
         if not GEMINI_API_KEY:
             return self._get_error_response("Gemini API Key missing in environment.")
@@ -44,13 +44,19 @@ class PDFParserAgent:
         if not text:
             return self._get_error_response("No text could be extracted from the PDF.")
 
-        # Try multiple model names in order of preference
-        models_to_try = ["gemini-1.5-flash-latest", "gemini-1.5-flash", "gemini-pro"]
+        # Try 2026-standard model names in order of preference
+        models_to_try = [
+            "gemini-2.5-flash",
+            "gemini-2.5-flash-latest",
+            "gemini-2.5-pro",
+            "gemini-2.0-flash",
+            "gemini-1.5-flash" # Legacy fallback
+        ]
         
         last_error = ""
         for model_name in models_to_try:
             try:
-                print(f"DEBUG: Attempting extraction with model: {model_name}")
+                print(f"DEBUG: Attempting 2026 extraction with model: {model_name}")
                 model = genai.GenerativeModel(model_name)
                 
                 prompt = f"""
@@ -69,10 +75,10 @@ class PDFParserAgent:
                 Return STRICT JSON only in this exact format:
                 {{
                   "name": "Scheme name",
-                  "eligibility": "Fuzzy criteria...",
-                  "benefits": "List of benefits...",
-                  "documents": ["doc1", "doc2"],
-                  "state": "Name of state or All India",
+                  "eligibility": "Detailed criteria...",
+                  "benefits": "Key financial or service benefits...",
+                  "documents": ["list", "of", "docs"],
+                  "state": "Specific state or All States",
                   "official_link": "URL",
                   "confidence": "high/medium/low"
                 }}
@@ -84,7 +90,6 @@ class PDFParserAgent:
                 
                 # Robust cleaning of JSON response (strips markdown backticks)
                 content = response.text.strip()
-                # Remove Markdown code blocks if present
                 content = re.sub(r'^```json\s*', '', content)
                 content = re.sub(r'^```\s*', '', content)
                 content = re.sub(r'\s*```$', '', content)
@@ -92,7 +97,7 @@ class PDFParserAgent:
                 
                 # Parse and validate
                 structured_data = json.loads(content)
-                print(f"SUCCESS: Extracted data using {model_name}")
+                print(f"SUCCESS: Extracted data using 2026-model: {model_name}")
                 return structured_data
                 
             except Exception as e:
@@ -101,8 +106,18 @@ class PDFParserAgent:
                 # Continue loop to next model in case of 404/403/etc
                 continue
 
-        # If all models fail
-        return self._get_error_response(f"All extraction models failed. Last error: {last_error}")
+        # Final failure check - List all models to diagnostics if all tried names failed
+        available = []
+        try:
+             available = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+        except:
+             pass
+             
+        error_msg = f"All models failed in 2026 context. Last model {model_name} error: {last_error}. "
+        if available:
+             error_msg += f"Available methods to your key: {', '.join(available)}"
+
+        return self._get_error_response(error_msg)
 
     def _get_error_response(self, message: str) -> dict:
         return {
@@ -120,10 +135,10 @@ class PDFParserAgent:
         """
         Main orchestration function for PDF extraction.
         """
-        # 1. Extract
+        # 1. Extract raw text
         raw_text = self.extract_text_from_pdf(file_bytes)
         
-        # 2. LLM Parse
+        # 2. LLM Parse with Gemini 2.5
         result = self.parse_scheme_with_llm(raw_text)
         
         return result
