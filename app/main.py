@@ -9,7 +9,7 @@ app = FastAPI(title="Government Scheme Recommendation API")
 # Add CORS middleware to allow Flutter frontend to connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # For production, restrict this to flutter app domains
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
