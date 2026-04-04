@@ -3,7 +3,8 @@ from fastapi import APIRouter, UploadFile, File, HTTPException
 from typing import List
 from app.models import (
     SchemeRequest, SchemeResponse, ChatRequest, ChatResponse, 
-    OfficeResponse, VerifiedApplicationRequest, VerifiedApplicationResponse
+    OfficeResponse, VerifiedApplicationRequest, VerifiedApplicationResponse,
+    HelpPathResponse
 )
 from app.services.recommendation import recommendation_engine
 
@@ -124,6 +125,28 @@ def get_nearest_offices(lat: float, lng: float):
     results = office_service.get_nearest_offices(lat, lng, limit=5)
     
     return results
+
+@router.get("/best-help-path", response_model=HelpPathResponse)
+def get_best_help_path(lat: float, lng: float):
+    """
+    Returns the "Best Help Path" sequence: 
+    User -> Nearest CSC -> BDO -> Final Authority.
+    """
+    # Simple validation for coordinates
+    if not (-90 <= lat <= 90) or not (-180 <= lng <= 180):
+        raise HTTPException(status_code=400, detail="Invalid coordinates.")
+
+    # Import the service
+    from app.services.office_service import office_service
+    
+    path = office_service.get_best_help_path(lat, lng)
+    
+    return {
+        "user_lat": lat,
+        "user_lng": lng,
+        "path": path,
+        "workflow_description": "1. CSC (Submit Documents) -> 2. BDO (Verification) -> 3. Authority (Approval)"
+    }
 
 @router.post("/blockchain/store-hash")
 async def store_doc_hash(file: UploadFile = File(...)):

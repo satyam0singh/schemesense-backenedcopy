@@ -56,3 +56,9 @@ class VerifiedApplicationResponse(BaseModel):
     explorer_url: str
     record: Dict[str, Any]
     timestamp: str
+
+class HelpPathResponse(BaseModel):
+    user_lat: float
+    user_lng: float
+    path: List[OfficeResponse]
+    workflow_description: str

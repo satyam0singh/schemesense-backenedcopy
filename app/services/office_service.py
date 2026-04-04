@@ -22,7 +22,14 @@ class OfficeService:
             
             # Karnataka
             {"name": "Bangalore One Center", "type": "CSC", "lat": 12.9716, "lng": 77.5946, "address": "MG Road, Bangalore"},
-            {"name": "BDO Office North Bangalore", "type": "BDO", "lat": 13.0358, "lng": 77.5970, "address": "Hebbal, Bangalore"}
+            {"name": "BDO Office North Bangalore", "type": "BDO", "lat": 13.0358, "lng": 77.5970, "address": "Hebbal, Bangalore"},
+            
+            # Final Authorities (SDM / District Collectorate)
+            {"name": "SDM Office Ghaziabad", "type": "Final Authority", "lat": 28.6690, "lng": 77.4230, "address": "Collectorate, Ghaziabad"},
+            {"name": "District Collectorate Lucknow", "type": "Final Authority", "lat": 26.8588, "lng": 80.9400, "address": "Lucknow DM Office"},
+            {"name": "SDM Mehrauli Office", "type": "Final Authority", "lat": 28.5140, "lng": 77.1850, "address": "Mehrauli District Center"},
+            {"name": "Pune Collectorate", "type": "Final Authority", "lat": 18.5284, "lng": 73.8739, "address": "Pune Station Road"},
+            {"name": "Bangalore Urban DC Office", "type": "Final Authority", "lat": 12.9779, "lng": 77.5852, "address": "Kandaya Bhavan, Bangalore"}
         ]
 
     def calculate_distance(self, lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -51,5 +58,28 @@ class OfficeService:
         sorted_results = sorted(results, key=lambda x: x["distance"])
         
         return sorted_results[:limit]
+
+    def get_best_help_path(self, user_lat: float, user_lng: float) -> List[Dict[str, Any]]:
+        """
+        Creates a logical 3-step sequence: CSC -> BDO -> Final Authority.
+        """
+        # Step 1: Nearest CSC
+        cscs = [o for o in self.get_nearest_offices(user_lat, user_lng, limit=50) if o["type"] == "CSC"]
+        best_csc = cscs[0] if cscs else None
+
+        # Step 2: Nearest BDO
+        bdos = [o for o in self.get_nearest_offices(user_lat, user_lng, limit=50) if o["type"] == "BDO"]
+        best_bdo = bdos[0] if bdos else None
+
+        # Step 3: Nearest Final Authority
+        authorities = [o for o in self.get_nearest_offices(user_lat, user_lng, limit=50) if o["type"] == "Final Authority"]
+        best_authority = authorities[0] if authorities else None
+
+        path = []
+        if best_csc: path.append(best_csc)
+        if best_bdo: path.append(best_bdo)
+        if best_authority: path.append(best_authority)
+
+        return path
 
 office_service = OfficeService()
