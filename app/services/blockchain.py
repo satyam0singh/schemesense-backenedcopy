@@ -85,6 +85,60 @@ class BlockchainService:
             else:
                 raise Exception(f"Blockchain Notarization Failed: {error_msg}")
 
+    def notarize_application_package(self, app_data: dict):
+        """
+        Stores a complete Verified Application Package (VAP) as a transaction note.
+        This includes user, scheme, multiple document hashes, and verification status.
+        """
+        try:
+            # Pre-flight check: Account Balance
+            account_info = self.client.account_info(self.address)
+            balance = account_info.get("amount", 0)
+            
+            if balance < 1000:
+                raise Exception(f"Insufficient Funds: Account {self.address} has {balance} microAlgos.")
+
+            params = self.client.suggested_params()
+            
+            # The record is stored as JSON in the note field
+            # Ensure timestamp is set if not provided
+            if not app_data.get("timestamp"):
+                app_data["timestamp"] = datetime.utcnow().isoformat() + "Z"
+            
+            # Identify this as a VAP
+            note_data = {
+                "type": "verified_application_package",
+                "version": "1.0",
+                "content": app_data
+            }
+            
+            note = json.dumps(note_data).encode()
+            
+            # Sending a 0-ALGO transaction to ourselves with the note
+            txn = transaction.PaymentTxn(
+                sender=self.address,
+                sp=params,
+                receiver=self.address,
+                amt=0,
+                note=note
+            )
+            
+            signed_txn = txn.sign(self.private_key)
+            txid = self.client.send_transaction(signed_txn)
+            
+            # For demonstration, we'll return immediately with the txid
+            # In production, we'd wait for confirmation (wait_for_confirmation)
+            # but for a snappy UI, we can return the ID and explorer URL.
+            
+            return {
+                "tx_id": txid,
+                "explorer_url": f"https://testnet.algoscan.app/tx/{txid}",
+                "record": app_data,
+                "timestamp": app_data["timestamp"]
+            }
+        except Exception as e:
+            raise Exception(f"Blockchain VAP Notarization Failed: {str(e)}")
+
     def verify_hash(self, txid: str, doc_hash: str):
         """
         Verify that a specific transaction on Algorand contains the given document hash.

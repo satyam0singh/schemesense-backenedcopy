@@ -39,3 +39,20 @@ class OfficeResponse(BaseModel):
     lng: float
     address: str
     distance: float
+
+class DocumentRecord(BaseModel):
+    name: str
+    hash: str
+
+class VerifiedApplicationRequest(BaseModel):
+    user: str
+    scheme: str
+    documents: List[DocumentRecord]
+    documents_verified: bool
+    timestamp: Optional[str] = None
+
+class VerifiedApplicationResponse(BaseModel):
+    tx_id: str
+    explorer_url: str
+    record: Dict[str, Any]
+    timestamp: str

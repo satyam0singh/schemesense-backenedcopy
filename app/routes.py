@@ -1,7 +1,10 @@
 import os
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from typing import List
-from app.models import SchemeRequest, SchemeResponse, ChatRequest, ChatResponse, OfficeResponse
+from app.models import (
+    SchemeRequest, SchemeResponse, ChatRequest, ChatResponse, 
+    OfficeResponse, VerifiedApplicationRequest, VerifiedApplicationResponse
+)
 from app.services.recommendation import recommendation_engine
 
 # Need these for lazy loading
@@ -181,4 +184,22 @@ async def verify_doc_integrity(tx_id: str, file: UploadFile = File(...)):
                 }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Verification Error: {str(e)}")
+
+@router.post("/blockchain/notarize-application", response_model=VerifiedApplicationResponse)
+async def notarize_application(app_req: VerifiedApplicationRequest):
+    """
+    Creates a Verified Application Package (VAP) and stores it on the Algorand blockchain.
+    This creates a tamper-proof record of the user's application, scheme, 
+    and verified document hashes.
+    """
+    try:
+        # Convert Pydantic model to dict
+        app_data = app_req.model_dump()
+        
+        # Store on Algorand
+        blockchain_result = blockchain_service.notarize_application_package(app_data)
+        
+        return blockchain_result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Blockchain Notarization Error: {str(e)}")
 
