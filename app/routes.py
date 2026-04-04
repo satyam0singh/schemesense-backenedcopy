@@ -137,6 +137,8 @@ async def store_doc_hash(file: UploadFile = File(...)):
         return {
             "status": "success",
             "message": "Document hash successfully notarized on Algorand Testnet.",
+            "hash": doc_hash,
+            "hash_preview": f"{doc_hash[:10]}...",
             **blockchain_result
         }
     except Exception as e:
@@ -174,7 +176,8 @@ async def verify_doc_integrity(tx_id: str, file: UploadFile = File(...)):
                 return {
                     "status": "error",
                     "message": result,
-                    "tx_id": tx_id
+                    "tx_id": tx_id,
+                    "hash_preview": f"{current_hash[:10]}..."
                 }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Verification Error: {str(e)}")

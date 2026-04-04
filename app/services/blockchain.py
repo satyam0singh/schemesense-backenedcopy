@@ -69,6 +69,7 @@ class BlockchainService:
             
             return {
                 "tx_id": txid,
+                "hash": doc_hash,
                 "hash_preview": f"{doc_hash[:10]}...",
                 "timestamp": datetime.utcnow().isoformat() + "Z",
                 "explorer_url": f"https://testnet.algoscan.app/tx/{txid}",
@@ -112,6 +113,7 @@ class BlockchainService:
                 return True, {
                     "verified": True,
                     "message": "Document is authentic and not tampered.",
+                    "hash": stored_hash,
                     "hash_preview": hash_preview,
                     "timestamp": datetime.utcnow().isoformat() + "Z"
                 }
@@ -119,6 +121,7 @@ class BlockchainService:
                 return False, {
                     "verified": False,
                     "message": "Document has been modified after upload.",
+                    "hash": doc_hash,
                     "hash_preview": f"Stored: {hash_preview} | Current: {doc_hash[:10]}..."
                 }
         except Exception as e:
